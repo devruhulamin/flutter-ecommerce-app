@@ -1,4 +1,4 @@
-import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/splash_screen.dart';
+import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/auth/splash_screen.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

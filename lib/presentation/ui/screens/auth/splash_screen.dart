@@ -1,4 +1,4 @@
-import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/register/enter_email_scree.dart';
+import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/auth/enter_email_scree.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/utilities/app_logo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

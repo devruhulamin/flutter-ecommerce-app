@@ -1,5 +1,7 @@
+import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/auth/complete_profile_screen.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/utilities/app_logo.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class EnterYourEmailScreen extends StatelessWidget {
   const EnterYourEmailScreen({super.key});
@@ -41,8 +43,11 @@ class EnterYourEmailScreen extends StatelessWidget {
               ),
               SizedBox(
                 width: double.infinity,
-                child:
-                    ElevatedButton(onPressed: () {}, child: const Text('Next')),
+                child: ElevatedButton(
+                    onPressed: () {
+                      Get.to(const CompleteProfileScreen());
+                    },
+                    child: const Text('Next')),
               )
             ],
           ),
