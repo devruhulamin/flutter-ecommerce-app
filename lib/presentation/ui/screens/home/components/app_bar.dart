@@ -1,5 +1,5 @@
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/constants/assets_constant.dart';
-import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/components/home/circular_icon.dart';
+import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/home/components/circular_icon.dart';
 import 'package:flutter/material.dart';
 
 PreferredSizeWidget homeAppBar() {
