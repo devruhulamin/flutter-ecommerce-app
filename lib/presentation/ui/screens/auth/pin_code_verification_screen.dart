@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/auth/complete_profile_screen.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/utilities/app_colors.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/utilities/app_logo.dart';
@@ -5,8 +7,46 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-class PinCodeVerifyScreen extends StatelessWidget {
+class PinCodeVerifyScreen extends StatefulWidget {
   const PinCodeVerifyScreen({super.key});
+
+  @override
+  State<PinCodeVerifyScreen> createState() => _PinCodeVerifyScreenState();
+}
+
+class _PinCodeVerifyScreenState extends State<PinCodeVerifyScreen> {
+  Timer? _timer;
+  final _secondRemaing = ValueNotifier<int>(120);
+  void _startTimer() {
+    const second = Duration(seconds: 1);
+
+    _timer = Timer.periodic(second, (timer) {
+      if (_secondRemaing.value <= 0) {
+        _cancelTimer();
+      } else {
+        _secondRemaing.value--;
+      }
+    });
+  }
+
+  void _cancelTimer() {
+    if (_timer != null && (_timer?.isActive ?? false)) {
+      _timer?.cancel();
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    _startTimer();
+  }
+
+  @override
+  void dispose() {
+    _cancelTimer();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,17 +117,23 @@ class PinCodeVerifyScreen extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              RichText(
-                  text: TextSpan(
-                      style: Theme.of(context).textTheme.bodyMedium,
-                      text: 'This code will expire in ',
-                      children: const [
-                    TextSpan(
-                        text: '120s',
-                        style: TextStyle(
-                            color: AppColors.primaryColor,
-                            fontWeight: FontWeight.bold))
-                  ])),
+              ValueListenableBuilder<int>(
+                valueListenable: _secondRemaing,
+                builder: (context, value, child) {
+                  return RichText(
+                      text: TextSpan(
+                          style: Theme.of(context).textTheme.bodyMedium,
+                          text: 'This code will expire in ',
+                          children: [
+                        TextSpan(
+                            text: '${value}s',
+                            style: const TextStyle(
+                                color: AppColors.primaryColor,
+                                fontWeight: FontWeight.bold))
+                      ]));
+                },
+              ),
+
               const SizedBox(
                 height: 10,
               ),
