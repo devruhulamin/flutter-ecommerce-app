@@ -1,5 +1,6 @@
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/theme/elevated_button_theme.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/theme/input_theme.dart';
+import 'package:crafty_bay_ruhulaminjr/presentation/ui/theme/text_button_theme.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/utilities/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -20,5 +21,6 @@ class AppThemeData {
       fontWeight: FontWeight.bold,
     )),
     elevatedButtonTheme: getElevatedButtonTheme(),
+    textButtonTheme: getTextButtonThemeData,
   );
 }
