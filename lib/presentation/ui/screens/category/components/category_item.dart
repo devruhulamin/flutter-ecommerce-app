@@ -9,7 +9,8 @@ class CategoryItem extends StatelessWidget {
     return const Column(
       children: [
         Card(
-          color: Color.fromARGB(255, 210, 250, 250),
+          elevation: 0,
+          color: Color.fromARGB(255, 222, 255, 255),
           child: Padding(
               padding: EdgeInsets.all(20),
               child: Icon(

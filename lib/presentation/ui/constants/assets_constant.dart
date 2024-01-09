@@ -7,4 +7,5 @@ class AssetPath {
   static const logoNav = '$images/logo_nav.png';
   static const logoNavSvg = '$images/logo_nav.svg';
   static const logoSvg = '$images/logo.svg';
+  static const shoePng = '$images/shoe.png';
 }
