@@ -1,3 +1,4 @@
+import 'package:crafty_bay_ruhulaminjr/presentation/state/bottom_nav_bar_controller.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/home/components/app_bar.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/home/components/banner_carousel.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/home/components/category_section.dart';
@@ -6,6 +7,7 @@ import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/home/components/s
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/home/components/section_title.dart';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -25,7 +27,9 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(height: 8),
               SectionTitle(
                 title: 'All Categories',
-                onTap: () {},
+                onTap: () {
+                  Get.find<BottomNavBarController>().changeIndex(0);
+                },
               ),
               const SizedBox(
                 height: 120,
