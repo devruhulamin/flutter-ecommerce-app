@@ -1,5 +1,6 @@
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/home/home_screen.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/utilities/app_logo.dart';
+import 'package:crafty_bay_ruhulaminjr/presentation/ui/widget/bottom_navigation_bar_home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(
       const Duration(seconds: 3),
       () {
-        Get.offAll(() => const HomeScreen());
+        Get.offAll(() => const BottomNavBarHome());
       },
     );
   }

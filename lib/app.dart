@@ -1,3 +1,4 @@
+import 'package:crafty_bay_ruhulaminjr/controller_binder.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/auth/splash_screen.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/theme/theme.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ class App extends StatelessWidget {
     return GetMaterialApp(
       theme: AppThemeData.appThemeData,
       home: const SplashScreen(),
+      initialBinding: ControllerBinder(),
     );
   }
 }
