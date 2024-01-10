@@ -8,30 +8,36 @@ class CategoriesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Get.find<BottomNavBarController>().changeIndex(0);
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (didPop) {
+        Get.find<BottomNavBarController>().changeIndex(0);
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              Get.find<BottomNavBarController>().changeIndex(0);
+            },
+          ),
+          title: Text(
+            "Categories",
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+        ),
+        body: GridView.builder(
+          padding: const EdgeInsets.all(10),
+          itemCount: 20,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 4,
+            mainAxisSpacing: 10,
+            crossAxisSpacing: 10,
+          ),
+          itemBuilder: (context, index) {
+            return const FittedBox(child: CategoryItem());
           },
         ),
-        title: Text(
-          "Categories",
-          style: Theme.of(context).textTheme.titleMedium,
-        ),
-      ),
-      body: GridView.builder(
-        padding: const EdgeInsets.all(10),
-        itemCount: 20,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 4,
-          mainAxisSpacing: 10,
-          crossAxisSpacing: 10,
-        ),
-        itemBuilder: (context, index) {
-          return const FittedBox(child: CategoryItem());
-        },
       ),
     );
   }

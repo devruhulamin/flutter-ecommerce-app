@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
               SectionTitle(
                 title: 'All Categories',
                 onTap: () {
-                  Get.find<BottomNavBarController>().changeIndex(0);
+                  Get.find<BottomNavBarController>().changeIndex(1);
                 },
               ),
               const SizedBox(
