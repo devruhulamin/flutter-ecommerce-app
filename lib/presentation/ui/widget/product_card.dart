@@ -8,8 +8,8 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 140,
-      width: 150,
+      height: 120,
+      width: 160,
       child: Card(
         color: Colors.white,
         child: Column(
@@ -40,7 +40,7 @@ class ProductCard extends StatelessWidget {
                     style: TextStyle(fontSize: 12),
                   ),
                   SizedBox(
-                    height: 4,
+                    height: 2,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -60,16 +60,16 @@ class ProductCard extends StatelessWidget {
                           Icon(
                             Icons.star,
                             color: Colors.amber,
-                            size: 16,
+                            size: 14,
                           ),
                           Text(
                             '4.8',
-                            style: TextStyle(fontSize: 16),
+                            style: TextStyle(fontSize: 12),
                           ),
                         ],
                       ),
                       Padding(
-                        padding: EdgeInsets.all(8),
+                        padding: EdgeInsets.all(4),
                         child: Card(
                           shape: Border(
                             top: BorderSide.none,
