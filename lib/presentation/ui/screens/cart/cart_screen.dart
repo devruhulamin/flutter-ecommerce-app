@@ -27,7 +27,7 @@ class CartScreen extends StatelessWidget {
                 child: ListView.separated(
               itemCount: 5,
               itemBuilder: (context, index) {
-                return const CartItem();
+                return CartItem();
               },
               separatorBuilder: (context, index) => const Divider(
                 height: 2,
