@@ -1,11 +1,10 @@
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/constants/assets_constant.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/utilities/app_colors.dart';
+import 'package:crafty_bay_ruhulaminjr/presentation/ui/widget/quantity_selector.dart';
 import 'package:flutter/material.dart';
 
 class CartItem extends StatelessWidget {
-  CartItem({super.key});
-
-  final itemQuantity = ValueNotifier<int>(1);
+  const CartItem({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -51,52 +50,7 @@ class CartItem extends StatelessWidget {
                       ),
                       SizedBox(
                         width: 100,
-                        child: ValueListenableBuilder<int>(
-                          valueListenable: itemQuantity,
-                          builder: (context, value, _) {
-                            return Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                SizedBox(
-                                  width: 30,
-                                  height: 30,
-                                  child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          padding: const EdgeInsets.all(0)),
-                                      onPressed: value <= 1
-                                          ? null
-                                          : () {
-                                              updateQuantity('-');
-                                            },
-                                      child: const Icon(
-                                        Icons.remove,
-                                        size: 14,
-                                      )),
-                                ),
-                                Text(
-                                  '0$value',
-                                  style: const TextStyle(fontSize: 16),
-                                ),
-                                SizedBox(
-                                  width: 30,
-                                  height: 30,
-                                  child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          padding: const EdgeInsets.all(0)),
-                                      onPressed: value >= 9
-                                          ? null
-                                          : () {
-                                              updateQuantity('+');
-                                            },
-                                      child: const Icon(
-                                        Icons.add,
-                                        size: 14,
-                                      )),
-                                )
-                              ],
-                            );
-                          },
-                        ),
+                        child: QuantitySelector(),
                       )
                     ],
                   ),
@@ -107,17 +61,5 @@ class CartItem extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  void updateQuantity(String op) {
-    if (op == '-') {
-      if (itemQuantity.value > 1) {
-        itemQuantity.value = itemQuantity.value - 1;
-      }
-    } else if (op == '+') {
-      if (itemQuantity.value < 9) {
-        itemQuantity.value = itemQuantity.value + 1;
-      }
-    }
   }
 }
