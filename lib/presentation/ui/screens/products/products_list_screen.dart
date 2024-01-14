@@ -12,8 +12,7 @@ class ProductListScreen extends StatelessWidget {
       child: GridView.builder(
         itemCount: 20,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          childAspectRatio: (1 / 1.6),
-          crossAxisCount: 3,
+          crossAxisCount: 2,
           crossAxisSpacing: 4,
           mainAxisSpacing: 8,
         ),

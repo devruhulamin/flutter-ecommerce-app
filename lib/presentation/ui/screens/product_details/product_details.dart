@@ -1,4 +1,8 @@
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/product_details/components/hero_carousel.dart';
+import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/products/component/product_fav_button.dart';
+import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/products/component/product_rating.dart';
+import 'package:crafty_bay_ruhulaminjr/presentation/ui/utilities/app_colors.dart';
+import 'package:crafty_bay_ruhulaminjr/presentation/ui/widget/primary_color_text.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/widget/quantity_selector.dart';
 import 'package:flutter/material.dart';
 
@@ -31,6 +35,19 @@ class ProductDetails extends StatelessWidget {
                         ),
                       ),
                       QuantitySelector(),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      ProductRating(),
+                      SizedBox(width: 8),
+                      PrimaryColorText(text: 'Reviews'),
+                      SizedBox(width: 8),
+                      ProductFavoriteButton()
                     ],
                   )
                 ],
