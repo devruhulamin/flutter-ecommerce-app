@@ -104,7 +104,6 @@ class CartItem extends StatelessWidget {
               ],
             ),
           ),
-          // cart price and quantity - + button
         ],
       ),
     );
