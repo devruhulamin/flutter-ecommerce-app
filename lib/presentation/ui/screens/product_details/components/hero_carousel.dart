@@ -18,7 +18,7 @@ class _HeroCarouselState extends State<HeroCarousel> {
       children: [
         CarouselSlider(
           options: CarouselOptions(
-            height: 200.0,
+            height: 240.0,
             viewportFraction: 1,
             onPageChanged: (index, reason) {
               _currentIdx.value = index;

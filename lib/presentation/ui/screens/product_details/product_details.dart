@@ -72,7 +72,19 @@ class ProductDetails extends StatelessWidget {
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.w500),
                       ),
-                      ProductSizeSelector()
+                      ProductSizeSelector(),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      const Text(
+                        "Description:",
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.w500),
+                      ),
+                      const Text(
+                        "The phrase nice shoes is often used as a lighthearted or playful way to start a conversation or give a compliment. It's a casual way to break the ice and show interest in the other person without being too direct. It's a simple, non-threatening compliment that can lead to further conversation",
+                        style: TextStyle(fontSize: 14, color: Colors.grey),
+                      )
                     ],
                   ),
                 ),
