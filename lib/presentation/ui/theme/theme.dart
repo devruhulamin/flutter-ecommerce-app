@@ -7,20 +7,22 @@ import 'package:flutter/material.dart';
 @immutable
 class AppThemeData {
   static final appThemeData = ThemeData(
-    primaryColor: AppColors.primaryColor,
-    primarySwatch: MaterialColor(
-      32,
-      AppColors.colorSwatch,
-    ),
-    progressIndicatorTheme:
-        const ProgressIndicatorThemeData(color: AppColors.primaryColor),
-    inputDecorationTheme: getDefaultInputTheme(),
-    textTheme: const TextTheme(
-        titleLarge: TextStyle(
-      fontSize: 40,
-      fontWeight: FontWeight.bold,
-    )),
-    elevatedButtonTheme: getElevatedButtonTheme(),
-    textButtonTheme: getTextButtonThemeData,
-  );
+      primaryColor: AppColors.primaryColor,
+      primarySwatch: MaterialColor(
+        32,
+        AppColors.colorSwatch,
+      ),
+      progressIndicatorTheme:
+          const ProgressIndicatorThemeData(color: AppColors.primaryColor),
+      inputDecorationTheme: getDefaultInputTheme(),
+      textTheme: const TextTheme(
+          titleLarge: TextStyle(
+        fontSize: 40,
+        fontWeight: FontWeight.bold,
+      )),
+      elevatedButtonTheme: getElevatedButtonTheme(),
+      textButtonTheme: getTextButtonThemeData,
+      appBarTheme: const AppBarTheme(
+        titleTextStyle: TextStyle(fontSize: 18, color: Colors.black87),
+      ));
 }

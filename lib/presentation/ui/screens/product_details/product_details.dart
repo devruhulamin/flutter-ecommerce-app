@@ -1,7 +1,8 @@
+import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/product_details/components/colors_selector.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/product_details/components/hero_carousel.dart';
+import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/product_details/components/product_size_selector.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/products/component/product_fav_button.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/products/component/product_rating.dart';
-import 'package:crafty_bay_ruhulaminjr/presentation/ui/utilities/app_colors.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/widget/price_with_action_button.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/widget/primary_color_text.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/widget/quantity_selector.dart';
@@ -23,6 +24,7 @@ class ProductDetails extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -52,7 +54,25 @@ class ProductDetails extends StatelessWidget {
                           SizedBox(width: 8),
                           ProductFavoriteButton()
                         ],
-                      )
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      const Text(
+                        "Color:",
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.w500),
+                      ),
+                      ProductColorSelector(),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      const Text(
+                        "Size:",
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.w500),
+                      ),
+                      ProductSizeSelector()
                     ],
                   ),
                 ),
