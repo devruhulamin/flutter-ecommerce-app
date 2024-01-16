@@ -7,10 +7,9 @@ class NetworkCaller {
   Future<NetworkResponse> getRequiest({required String url}) async {
     try {
       final response = await http.get(Uri.parse(url));
-      print(response.statusCode);
+
       if (response.statusCode == 200) {
         final decodedResponse = jsonDecode(response.body);
-        print('decodedResponse["msg"]');
         if (decodedResponse['msg'] == "success") {
           final result = NetworkResponse(
               isSuccess: true,

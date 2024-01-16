@@ -69,7 +69,7 @@ class EnterYourEmailScreen extends StatelessWidget {
                           if (_formKey.currentState!.validate()) {
                             final isSuccess = await controller.sendOtp(
                                 email: _emailController.text);
-                            print(isSuccess);
+
                             if (isSuccess) {
                               Get.to(() => PinCodeVerifyScreen(
                                   email: _emailController.text));

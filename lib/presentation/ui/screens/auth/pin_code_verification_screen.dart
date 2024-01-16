@@ -1,6 +1,7 @@
 import 'dart:async';
 
-import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/auth/complete_profile_screen.dart';
+import 'package:crafty_bay_ruhulaminjr/presentation/state/verify_otp_controller.dart';
+import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/home/home_screen.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/utilities/app_colors.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/utilities/app_logo.dart';
 import 'package:flutter/material.dart';
@@ -49,6 +50,8 @@ class _PinCodeVerifyScreenState extends State<PinCodeVerifyScreen> {
     super.dispose();
   }
 
+  bool _isPinInputted = false;
+  String _pinValue = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -100,7 +103,9 @@ class _PinCodeVerifyScreenState extends State<PinCodeVerifyScreen> {
                 backgroundColor: Colors.transparent,
                 enableActiveFill: false,
                 onCompleted: (v) {
-                  // print("Completed");
+                  _pinValue = v;
+                  _isPinInputted = true;
+                  setState(() {});
                 },
               ),
 
@@ -109,11 +114,23 @@ class _PinCodeVerifyScreenState extends State<PinCodeVerifyScreen> {
               ),
               SizedBox(
                 width: double.infinity,
-                child: ElevatedButton(
-                    onPressed: () {
-                      Get.to(const CompleteProfileScreen());
-                    },
-                    child: const Text('Next')),
+                child: GetBuilder<VerifyOtpController>(builder: (controller) {
+                  return ElevatedButton(
+                      onPressed: _isPinInputted
+                          ? () async {
+                              final isSucces = await controller.verifyOtp(
+                                  email: widget.email, otp: _pinValue);
+                              if (isSucces) {
+                                Get.to(() => const HomeScreen());
+                              }
+                            }
+                          : null,
+                      child: controller.isLoading
+                          ? const CircularProgressIndicator(
+                              color: Colors.white,
+                            )
+                          : const Text('Verify'));
+                }),
               ),
               const SizedBox(
                 height: 20,
