@@ -8,7 +8,8 @@ import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class PinCodeVerifyScreen extends StatefulWidget {
-  const PinCodeVerifyScreen({super.key});
+  final String email;
+  const PinCodeVerifyScreen({super.key, required this.email});
 
   @override
   State<PinCodeVerifyScreen> createState() => _PinCodeVerifyScreenState();
@@ -137,7 +138,9 @@ class _PinCodeVerifyScreenState extends State<PinCodeVerifyScreen> {
               const SizedBox(
                 height: 10,
               ),
-              TextButton(onPressed: () {}, child: const Text('Resend Code'))
+              TextButton(
+                  onPressed: _secondRemaing.value == 0 ? () {} : null,
+                  child: const Text('Resend Code'))
             ],
           ),
         ),

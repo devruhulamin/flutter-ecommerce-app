@@ -1,4 +1,5 @@
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/auth/pin_code_verification_screen.dart';
+import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/home/home_screen.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/utilities/app_logo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -74,7 +75,7 @@ class CompleteProfileScreen extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                     onPressed: () {
-                      Get.to(const PinCodeVerifyScreen());
+                      Get.to(const HomeScreen());
                     },
                     child: const Text('Complete')),
               )

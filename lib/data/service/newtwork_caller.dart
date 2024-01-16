@@ -17,15 +17,18 @@ class NetworkCaller {
           return result;
         } else {
           return NetworkResponse(
-              isSuccess: false,
-              statusCode: response.statusCode,
-              responseData: decodedResponse);
+            isSuccess: false,
+            statusCode: response.statusCode,
+            responseData: decodedResponse,
+            errorMessage: decodedResponse['data'] ?? 'Something went wrong',
+          );
         }
       } else {
         return NetworkResponse(
             isSuccess: false,
             statusCode: response.statusCode,
-            responseData: jsonDecode(response.body));
+            responseData: null,
+            errorMessage: 'Something went wrong');
       }
     } catch (e) {
       throw Exception('Something Went Wrong');
@@ -46,15 +49,18 @@ class NetworkCaller {
           return result;
         } else {
           return NetworkResponse(
-              isSuccess: false,
-              statusCode: response.statusCode,
-              responseData: decodedResponse);
+            isSuccess: false,
+            statusCode: response.statusCode,
+            responseData: decodedResponse,
+            errorMessage: decodedResponse['data'] ?? 'Something went wrong',
+          );
         }
       } else {
         return NetworkResponse(
             isSuccess: false,
             statusCode: response.statusCode,
-            responseData: jsonDecode(response.body));
+            responseData: null,
+            errorMessage: 'Something went wrong');
       }
     } catch (e) {
       throw Exception('Something Went Wrong');
