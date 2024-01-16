@@ -1,5 +1,5 @@
-import 'package:crafty_bay_ruhulaminjr/data/service/newtwork_caller.dart';
-import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/auth/complete_profile_screen.dart';
+import 'package:crafty_bay_ruhulaminjr/presentation/state/send_email_otp_controller.dart';
+import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/auth/pin_code_verification_screen.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/utilities/app_logo.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/utilities/extensions/email_validaor.dart';
 import 'package:flutter/material.dart';
@@ -62,11 +62,25 @@ class EnterYourEmailScreen extends StatelessWidget {
                 ),
                 SizedBox(
                   width: double.infinity,
-                  child: ElevatedButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {}
-                      },
-                      child: const Text('Next')),
+                  child:
+                      GetBuilder<SendEmailOtpController>(builder: (controller) {
+                    return ElevatedButton(
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            final isSuccess = await controller.sendOtp(
+                                email: _emailController.text);
+                            print(isSuccess);
+                            if (isSuccess) {
+                              Get.to(() => PinCodeVerifyScreen(
+                                  email: _emailController.text));
+                            }
+                          }
+                        },
+                        child: controller.isLoading
+                            ? const CircularProgressIndicator(
+                                color: Colors.white)
+                            : const Text('Next'));
+                  }),
                 )
               ],
             ),

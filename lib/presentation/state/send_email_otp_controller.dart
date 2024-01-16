@@ -22,7 +22,7 @@ class SendEmailOtpController extends GetxController {
       _isLoading = false;
       update();
       _errorMessage = response.errorMessage ?? 'Error happens';
-      return true;
+      return false;
     }
   }
 }
