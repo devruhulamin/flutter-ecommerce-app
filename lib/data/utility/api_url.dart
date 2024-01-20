@@ -7,4 +7,5 @@ class ApiUrl {
       '$baseUrl/UserLogin/$email';
   static String otpVerifyUrl({required String email, required String otp}) =>
       '$baseUrl/VerifyLogin/$email/$otp';
+  static String readProfileUrl() => '$baseUrl/ReadProfile';
 }

@@ -16,7 +16,9 @@ class SendEmailOtpController extends GetxController {
         await NetworkCaller().getRequiest(url: ApiUrl.otpSendUrl(email: email));
     if (response.isSuccess) {
       _isLoading = false;
+
       update();
+
       return true;
     } else {
       _isLoading = false;

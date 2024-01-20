@@ -122,6 +122,9 @@ class _PinCodeVerifyScreenState extends State<PinCodeVerifyScreen> {
                                   email: widget.email, otp: _pinValue);
                               if (isSucces) {
                                 Get.to(() => const HomeScreen());
+                              } else {
+                                Get.snackbar(
+                                    'Error Occur', controller.errorMessage);
                               }
                             }
                           : null,

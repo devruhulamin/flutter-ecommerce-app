@@ -73,6 +73,9 @@ class EnterYourEmailScreen extends StatelessWidget {
                             if (isSuccess) {
                               Get.to(() => PinCodeVerifyScreen(
                                   email: _emailController.text));
+                            } else {
+                              Get.snackbar(
+                                  'Error Occur', controller.errorMessage);
                             }
                           }
                         },
