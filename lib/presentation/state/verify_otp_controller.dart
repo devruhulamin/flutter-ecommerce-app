@@ -1,6 +1,6 @@
 import 'package:crafty_bay_ruhulaminjr/data/service/newtwork_caller.dart';
 import 'package:crafty_bay_ruhulaminjr/data/utility/api_url.dart';
-import 'package:crafty_bay_ruhulaminjr/data/utility/local_storage.dart';
+import 'package:crafty_bay_ruhulaminjr/data/model/local_storage.dart';
 import 'package:get/get.dart';
 
 class VerifyOtpController extends GetxController {
@@ -19,7 +19,7 @@ class VerifyOtpController extends GetxController {
       _isLoading = false;
 
       final token = response.responseData['data'];
-      LocalStorage().saveToken(token);
+      AuthLocalStorage().saveToken(token);
       update();
       return true;
     } else {

@@ -1,7 +1,7 @@
 import 'package:crafty_bay_ruhulaminjr/data/model/profile.dart';
 import 'package:crafty_bay_ruhulaminjr/data/service/newtwork_caller.dart';
 import 'package:crafty_bay_ruhulaminjr/data/utility/api_url.dart';
-import 'package:crafty_bay_ruhulaminjr/data/utility/local_storage.dart';
+import 'package:crafty_bay_ruhulaminjr/data/model/local_storage.dart';
 import 'package:get/get.dart';
 
 typedef IsProfileCompleted = bool;
@@ -14,7 +14,7 @@ class GetProfileController extends GetxController {
     _isloading = true;
     update();
     try {
-      final localStorage = LocalStorage();
+      final localStorage = AuthLocalStorage();
       final token = await localStorage.getToken();
       final response =
           await NetworkCaller().getRequiest(url: ApiUrl.baseUrl, token: token);
