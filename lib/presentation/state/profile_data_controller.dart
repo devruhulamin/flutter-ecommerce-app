@@ -5,10 +5,10 @@ import 'package:get/get.dart';
 
 class ProfileDataController extends GetxController {
   bool _isloading = false;
-  Profile? _profile;
+  Profile _profile = Profile();
   bool _isCompleted = false;
   bool get isLoading => _isloading;
-  Profile? get getProfileData => _profile;
+  Profile get getProfileData => _profile;
   bool get isProfileCompleted => _isCompleted;
   Future<bool> readProfileData(String token) async {
     _isloading = true;

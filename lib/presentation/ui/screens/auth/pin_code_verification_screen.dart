@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:crafty_bay_ruhulaminjr/presentation/state/profile_data_controller.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/state/verify_otp_controller.dart';
+import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/auth/complete_profile_screen.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/home/home_screen.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/utilities/app_colors.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/utilities/app_logo.dart';
@@ -121,16 +121,14 @@ class _PinCodeVerifyScreenState extends State<PinCodeVerifyScreen> {
                           ? () async {
                               final isSucces = await controller.verifyOtp(
                                   email: widget.email, otp: _pinValue);
+
                               if (isSucces) {
-                                final token = controller.getToken;
-                                if (token == null) {
-                                  Get.snackbar('Token is Null',
-                                      'could not get the token');
-                                  return;
+                                if (controller.shouldNavigateCompleteProfile) {
+                                  Get.offAll(() => const HomeScreen());
+                                } else {
+                                  Get.offAll(
+                                      () => const CompleteProfileScreen());
                                 }
-                                final isExistingUser =
-                                    await Get.find<ProfileDataController>()
-                                        .readProfileData(token);
                               } else {
                                 Get.snackbar(
                                     'Error Occur', controller.errorMessage);
