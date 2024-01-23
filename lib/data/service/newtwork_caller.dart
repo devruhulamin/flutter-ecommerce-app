@@ -41,9 +41,16 @@ class NetworkCaller {
   }
 
   Future<NetworkResponse> postRequiest(
-      {required String url, required Map<String, dynamic> body}) async {
+      {required String url,
+      required Map<String, dynamic> body,
+      String? token}) async {
     try {
-      final response = await http.post(Uri.parse(url), body: jsonEncode(body));
+      final response = await http.post(Uri.parse(url),
+          headers: {
+            'Content-Type': 'application/json',
+            'token': '$token',
+          },
+          body: jsonEncode(body));
       if (response.statusCode == 200) {
         final decodedResponse = jsonDecode(response.body);
         if (decodedResponse['msg'] == "success") {

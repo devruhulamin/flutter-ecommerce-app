@@ -1,10 +1,14 @@
+import 'package:crafty_bay_ruhulaminjr/data/model/profile_payload.dart';
+import 'package:crafty_bay_ruhulaminjr/presentation/state/complete_profile_controller.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/home/home_screen.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/utilities/app_logo.dart';
+import 'package:crafty_bay_ruhulaminjr/presentation/ui/widget/center_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CompleteProfileScreen extends StatefulWidget {
-  const CompleteProfileScreen({super.key});
+  final String token;
+  const CompleteProfileScreen({super.key, required this.token});
 
   @override
   State<CompleteProfileScreen> createState() => _CompleteProfileScreenState();
@@ -16,7 +20,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   final phoneController = TextEditingController();
   final cityController = TextEditingController();
   final addressController = TextEditingController();
-  final formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +29,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Form(
-            key: formKey,
+            key: _formKey,
             child: Column(
               children: [
                 const SizedBox(
@@ -139,11 +143,32 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                 ),
                 SizedBox(
                   width: double.infinity,
-                  child: ElevatedButton(
-                      onPressed: () {
-                        Get.to(const HomeScreen());
-                      },
-                      child: const Text('Complete')),
+                  child: GetBuilder<CompleteProfileController>(
+                      builder: (controller) {
+                    return Visibility(
+                      visible: controller.isloading == false,
+                      replacement: const CenterLoading(),
+                      child: ElevatedButton(
+                          onPressed: () async {
+                            _formKey.currentState?.validate();
+                            final profileData = ProfilePayload(
+                                firstName: firstNameController.text,
+                                lastName: lastNameController.text,
+                                phoneNumber: phoneController.text,
+                                city: cityController.text,
+                                shippingAddress: addressController.text);
+                            final result = await controller.completeProfile(
+                                token: widget.token, profile: profileData);
+                            if (result) {
+                              Get.offAll(const HomeScreen());
+                            } else {
+                              Get.snackbar(
+                                  'Error occur', controller.errorMessage);
+                            }
+                          },
+                          child: const Text('Complete')),
+                    );
+                  }),
                 )
               ],
             ),
@@ -151,5 +176,15 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    firstNameController.dispose();
+    lastNameController.dispose();
+    phoneController.dispose();
+    cityController.dispose();
+    addressController.dispose();
+    super.dispose();
   }
 }

@@ -126,8 +126,9 @@ class _PinCodeVerifyScreenState extends State<PinCodeVerifyScreen> {
                                 if (controller.shouldNavigateCompleteProfile) {
                                   Get.offAll(() => const HomeScreen());
                                 } else {
-                                  Get.offAll(
-                                      () => const CompleteProfileScreen());
+                                  Get.offAll(() => CompleteProfileScreen(
+                                        token: controller.getToken,
+                                      ));
                                 }
                               } else {
                                 Get.snackbar(
