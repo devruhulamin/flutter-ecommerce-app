@@ -18,9 +18,9 @@ class BannerListController extends GetxController {
       final response =
           await NetworkCaller().getRequiest(url: ApiUrl.listProductSliderUrl);
       if (response.isSuccess) {
-        final data = response.responseData['data'];
-        _errorMessage =
-            data.map((element) => BannerProduct.fromJson(element)).toList();
+        for (final pd in response.responseData['data']) {
+          _bannerProduct.add(BannerProduct.fromJson(pd));
+        }
         return true;
       } else {
         _errorMessage = response.errorMessage ?? 'An Error Occur';

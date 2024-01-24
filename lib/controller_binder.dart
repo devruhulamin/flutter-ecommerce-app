@@ -1,4 +1,5 @@
 import 'package:crafty_bay_ruhulaminjr/presentation/state/auth_controller.dart';
+import 'package:crafty_bay_ruhulaminjr/presentation/state/banner_list_controller.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/state/bottom_nav_bar_controller.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/state/complete_profile_controller.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/state/profile_data_controller.dart';
@@ -15,5 +16,6 @@ class ControllerBinder extends Bindings {
     Get.put(AuthController());
     Get.put(ProfileDataController());
     Get.put(CompleteProfileController());
+    Get.put(BannerListController());
   }
 }
