@@ -11,8 +11,8 @@ class VerifyOtpController extends GetxController {
   String _token = '';
   String get getToken => _token;
   String get errorMessage => _errorMessage;
-  bool _shouldNavigate = false;
-  bool get shouldNavigateCompleteProfile => _shouldNavigate;
+  bool __isCompleted = false;
+  bool get isProfileCompleted => __isCompleted;
 
   Future<bool> verifyOtp({required String email, required String otp}) async {
     _isLoading = true;
@@ -22,21 +22,24 @@ class VerifyOtpController extends GetxController {
           .getRequiest(url: ApiUrl.otpVerifyUrl(email: email, otp: otp));
       if (response.isSuccess) {
         _token = response.responseData['data'];
+        await Future.delayed(const Duration(seconds: 3));
         final result =
             await Get.find<ProfileDataController>().readProfileData(_token);
         if (result) {
-          _shouldNavigate =
-              Get.find<ProfileDataController>().isProfileCompleted;
+          __isCompleted = Get.find<ProfileDataController>().isProfileCompleted;
+          update();
           // if the profile is complete
-          if (_shouldNavigate) {
+          if (__isCompleted) {
             final authContoller = Get.find<AuthController>();
 
-            authContoller.saveToken(_token);
-            authContoller
+            await authContoller.saveToken(_token);
+            await authContoller
                 .saveProfle(Get.find<ProfileDataController>().getProfileData);
           }
+          return true;
+        } else {
+          return false;
         }
-        return true;
       } else {
         _errorMessage = response.errorMessage ?? 'Error happens';
         return false;

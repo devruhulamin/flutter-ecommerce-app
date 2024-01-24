@@ -14,19 +14,23 @@ class ProfileDataController extends GetxController {
     _isloading = true;
     update();
     try {
-      final response =
-          await NetworkCaller().getRequiest(url: ApiUrl.baseUrl, token: token);
+      final response = await NetworkCaller()
+          .getRequiest(url: ApiUrl.readProfileUrl, token: token);
+
       if (response.isSuccess) {
         final profiledata = response.responseData['data'];
         if (profiledata.isEmpty) {
           _isCompleted = false;
+          update();
         } else {
-          _profile = Profile.fromJson(profiledata);
+          _profile = Profile.fromJson(profiledata[0]);
           _isCompleted = true;
-          return true;
+          update();
         }
+        return true;
+      } else {
+        return false;
       }
-      return false;
     } catch (e) {
       return false;
     } finally {

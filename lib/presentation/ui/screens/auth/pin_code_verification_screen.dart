@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:crafty_bay_ruhulaminjr/presentation/state/verify_otp_controller.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/auth/complete_profile_screen.dart';
-import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/home/home_screen.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/utilities/app_colors.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/utilities/app_logo.dart';
+import 'package:crafty_bay_ruhulaminjr/presentation/ui/widget/bottom_navigation_bar_home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -123,12 +123,11 @@ class _PinCodeVerifyScreenState extends State<PinCodeVerifyScreen> {
                                   email: widget.email, otp: _pinValue);
 
                               if (isSucces) {
-                                if (controller.shouldNavigateCompleteProfile) {
-                                  Get.offAll(() => const HomeScreen());
+                                if (controller.isProfileCompleted) {
+                                  Get.offAll(() => const BottomNavBarHome());
                                 } else {
                                   Get.offAll(() => CompleteProfileScreen(
-                                        token: controller.getToken,
-                                      ));
+                                      token: controller.getToken));
                                 }
                               } else {
                                 Get.snackbar(
