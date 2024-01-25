@@ -1,3 +1,4 @@
+import 'package:crafty_bay_ruhulaminjr/data/model/popular_product_item.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/constants/assets_constant.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/product_details/product_details.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/products/component/product_fav_button.dart';
@@ -7,7 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({super.key});
+  final ProductItem product;
+  const ProductCard({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -39,16 +41,16 @@ class ProductCard extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.all(8),
+              Padding(
+                padding: const EdgeInsets.all(8),
                 child: Column(
                   children: [
                     Text(
-                      'New year special shoe 30',
+                      '${product.title}',
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(fontSize: 12),
+                      style: const TextStyle(fontSize: 12),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 2,
                     ),
                     Row(
@@ -56,10 +58,12 @@ class ProductCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         PrimaryColorText(
-                          text: '\$100',
+                          text: '\$${product.price}',
                         ),
-                        ProductRating(),
-                        ProductFavoriteButton(),
+                        ProductRating(
+                          rating: product.star,
+                        ),
+                        const ProductFavoriteButton(),
                       ],
                     )
                   ],

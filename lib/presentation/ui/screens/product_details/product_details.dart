@@ -48,7 +48,9 @@ class ProductDetails extends StatelessWidget {
                       const Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          ProductRating(),
+                          ProductRating(
+                            rating: 4.5,
+                          ),
                           SizedBox(width: 8),
                           PrimaryColorText(text: 'Reviews'),
                           SizedBox(width: 8),

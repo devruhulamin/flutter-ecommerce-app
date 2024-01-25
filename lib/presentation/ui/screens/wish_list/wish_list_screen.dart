@@ -19,7 +19,9 @@ class WishListScreen extends StatelessWidget {
             'Wish List',
             style: Theme.of(context).textTheme.titleMedium,
           )),
-      body: const ProductListScreen(),
+      body: const ProductListScreen(
+        items: [],
+      ),
     );
   }
 }

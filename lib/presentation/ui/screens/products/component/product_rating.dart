@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
 
 class ProductRating extends StatelessWidget {
-  const ProductRating({super.key});
+  final double? rating;
+  const ProductRating({super.key, required this.rating});
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Icon(
+        const Icon(
           Icons.star,
           color: Colors.amber,
           size: 18,
         ),
-        SizedBox(width: 2),
+        const SizedBox(width: 2),
         Text(
-          '4.8',
-          style: TextStyle(fontSize: 16),
+          '${rating?.toStringAsFixed(1)}',
+          style: const TextStyle(fontSize: 16),
         ),
       ],
     );

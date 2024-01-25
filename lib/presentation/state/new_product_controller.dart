@@ -21,7 +21,6 @@ class NewProductsController extends GetxController {
       for (final data in response.responseData['data']) {
         _products.add(ProductItem().fromJson(data));
       }
-      print(_products);
       return true;
     } catch (e) {
       _errorMessage = 'Error Was $e';
