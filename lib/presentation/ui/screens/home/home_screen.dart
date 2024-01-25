@@ -1,5 +1,6 @@
 import 'package:crafty_bay_ruhulaminjr/presentation/state/banner_list_controller.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/state/bottom_nav_bar_controller.dart';
+import 'package:crafty_bay_ruhulaminjr/presentation/state/category_item_controller.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/home/components/app_bar.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/home/components/banner_carousel.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/home/components/category_section.dart';
@@ -43,9 +44,17 @@ class HomeScreen extends StatelessWidget {
                   Get.find<BottomNavBarController>().changeIndex(1);
                 },
               ),
-              const SizedBox(
+              SizedBox(
                 height: 120,
-                child: CategorySection(),
+                child:
+                    GetBuilder<CategoryItemController>(builder: (controller) {
+                  return Visibility(
+                      visible: controller.isLoading == false,
+                      replacement: const CenterLoading(),
+                      child: CategorySection(
+                        items: controller.getCategoryItem,
+                      ));
+                }),
               ),
               const SizedBox(height: 8),
               SectionTitle(

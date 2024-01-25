@@ -1,5 +1,6 @@
 import 'package:crafty_bay_ruhulaminjr/presentation/state/banner_list_controller.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/state/bottom_nav_bar_controller.dart';
+import 'package:crafty_bay_ruhulaminjr/presentation/state/category_item_controller.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/cart/cart_screen.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/category/category_screen.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/home/home_screen.dart';
@@ -20,6 +21,7 @@ class _BottomNavBarHomeState extends State<BottomNavBarHome> {
   void initState() {
     super.initState();
     Get.find<BannerListController>().getBannerList();
+    Get.find<CategoryItemController>().loadCategoryItem();
   }
 
   @override
