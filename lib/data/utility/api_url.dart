@@ -11,4 +11,6 @@ class ApiUrl {
   static const String createProfileUrl = '$baseUrl/CreateProfile';
   static const String listProductSliderUrl = '$baseUrl/ListProductSlider';
   static const String categoryListUrl = '$baseUrl/CategoryList';
+  static String productByRemarks(String remarks) =>
+      '$baseUrl/ListProductByRemark/special';
 }
