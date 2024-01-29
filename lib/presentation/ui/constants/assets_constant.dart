@@ -8,4 +8,5 @@ class AssetPath {
   static const logoNavSvg = '$images/logo_nav.svg';
   static const logoSvg = '$images/logo.svg';
   static const shoePng = '$images/shoe.png';
+  static const placeHolderUrl = 'https://via.placeholder.com/350x150';
 }

@@ -3,7 +3,7 @@ import 'package:crafty_bay_ruhulaminjr/data/service/newtwork_caller.dart';
 import 'package:crafty_bay_ruhulaminjr/data/utility/api_url.dart';
 import 'package:get/get.dart';
 
-class PopularProductsController extends GetxController {
+class ProductDetailsController extends GetxController {
   bool _isloading = false;
   bool get isloading => _isloading;
   String _errorMessage = '';
@@ -19,8 +19,7 @@ class PopularProductsController extends GetxController {
           .getRequiest(url: ApiUrl.productDetailsUrl(id.toString()));
       if (response.isSuccess) {
         _productDetailsModel =
-            ProductDetailsModel.fromJson(response.responseData['data']);
-
+            ProductDetailsModel.fromJson(response.responseData['data'][0]);
         return true;
       } else {
         return false;

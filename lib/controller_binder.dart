@@ -6,6 +6,7 @@ import 'package:crafty_bay_ruhulaminjr/presentation/state/category_products_cont
 import 'package:crafty_bay_ruhulaminjr/presentation/state/complete_profile_controller.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/state/new_product_controller.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/state/popular_product_controller.dart';
+import 'package:crafty_bay_ruhulaminjr/presentation/state/product_details_controller.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/state/profile_data_controller.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/state/send_email_otp_controller.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/state/special_product_controller.dart';
@@ -27,5 +28,6 @@ class ControllerBinder extends Bindings {
     Get.put(SpecialProductController());
     Get.put(NewProductsController());
     Get.put(CategoryProductsController());
+    Get.put(ProductDetailsController());
   }
 }

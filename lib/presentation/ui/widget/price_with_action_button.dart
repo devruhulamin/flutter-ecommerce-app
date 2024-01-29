@@ -3,7 +3,8 @@ import 'package:crafty_bay_ruhulaminjr/presentation/ui/widget/primary_color_text
 import 'package:flutter/material.dart';
 
 class PriceWithActionButton extends StatelessWidget {
-  const PriceWithActionButton({super.key});
+  final String price;
+  const PriceWithActionButton({super.key, required this.price});
 
   @override
   Widget build(BuildContext context) {
@@ -17,14 +18,14 @@ class PriceWithActionButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Column(
+          Column(
             children: [
-              Text(
+              const Text(
                 'Total Price',
                 style: TextStyle(fontSize: 12, color: Colors.black),
               ),
               PrimaryColorText(
-                text: '\$10000',
+                text: '\$$price',
                 size: 20,
               ),
             ],

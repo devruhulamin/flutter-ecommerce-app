@@ -1,9 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/utilities/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:collection/collection.dart';
 
 class HeroCarousel extends StatefulWidget {
-  const HeroCarousel({super.key});
+  final List<String> urls;
+  const HeroCarousel({super.key, required this.urls});
 
   @override
   State<HeroCarousel> createState() => _HeroCarouselState();
@@ -11,7 +13,6 @@ class HeroCarousel extends StatefulWidget {
 
 class _HeroCarouselState extends State<HeroCarousel> {
   final _currentIdx = ValueNotifier<int>(0);
-  final dummy = [0, 1, 2, 3, 4];
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -24,16 +25,16 @@ class _HeroCarouselState extends State<HeroCarousel> {
               _currentIdx.value = index;
             },
           ),
-          items: dummy.map((i) {
+          items: widget.urls.map((i) {
             return Builder(
               builder: (BuildContext context) {
                 return Container(
                     width: MediaQuery.of(context).size.width,
                     decoration: const BoxDecoration(color: Colors.grey),
                     alignment: Alignment.center,
-                    child: Text(
-                      'text $i',
-                      style: const TextStyle(fontSize: 16.0),
+                    child: Image.network(
+                      i,
+                      fit: BoxFit.cover,
                     ));
               },
             );
@@ -49,7 +50,7 @@ class _HeroCarouselState extends State<HeroCarousel> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ...dummy.map((e) {
+                  ...widget.urls.mapIndexed((e, indx) {
                     return Container(
                       width: 12,
                       height: 12,
