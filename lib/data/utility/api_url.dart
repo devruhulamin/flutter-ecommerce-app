@@ -13,4 +13,6 @@ class ApiUrl {
   static const String categoryListUrl = '$baseUrl/CategoryList';
   static String productByRemarks(String remarks) =>
       '$baseUrl/ListProductByRemark/special';
+  static String productsByCategoryUrl(String id) =>
+      '$baseUrl/ListProductByCategory/$id';
 }

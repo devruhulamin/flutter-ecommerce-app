@@ -21,9 +21,10 @@ class PopularProductsController extends GetxController {
       for (final data in response.responseData['data']) {
         _products.add(ProductItem().fromJson(data));
       }
-      print(_products);
+
       return true;
     } catch (e) {
+      print(e.toString());
       _errorMessage = 'Error Was $e';
       return false;
     } finally {
