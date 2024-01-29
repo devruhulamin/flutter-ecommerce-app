@@ -15,4 +15,6 @@ class ApiUrl {
       '$baseUrl/ListProductByRemark/special';
   static String productsByCategoryUrl(String id) =>
       '$baseUrl/ListProductByCategory/$id';
+  static String productDetailsUrl(String id) =>
+      '$baseUrl/ProductDetailsById/$id';
 }

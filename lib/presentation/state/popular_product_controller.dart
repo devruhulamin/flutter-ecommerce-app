@@ -24,7 +24,6 @@ class PopularProductsController extends GetxController {
 
       return true;
     } catch (e) {
-      print(e.toString());
       _errorMessage = 'Error Was $e';
       return false;
     } finally {
