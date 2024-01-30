@@ -3,8 +3,14 @@ import 'package:crafty_bay_ruhulaminjr/presentation/ui/widget/primary_color_text
 import 'package:flutter/material.dart';
 
 class PriceWithActionButton extends StatelessWidget {
+  final VoidCallback ontap;
+  final String actionText;
   final String price;
-  const PriceWithActionButton({super.key, required this.price});
+  const PriceWithActionButton(
+      {super.key,
+      required this.price,
+      required this.actionText,
+      required this.ontap});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +36,7 @@ class PriceWithActionButton extends StatelessWidget {
               ),
             ],
           ),
-          ElevatedButton(onPressed: () {}, child: const Text('Checkout'))
+          ElevatedButton(onPressed: ontap, child: Text(actionText))
         ],
       ),
     );

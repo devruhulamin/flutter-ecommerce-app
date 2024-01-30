@@ -27,6 +27,10 @@ class AuthController extends GetxController {
     token = await _localStorage.getToken();
   }
 
+  Future<String?> getToken() async {
+    return await _localStorage.getToken();
+  }
+
   Future<bool> logOut() async {
     return _localStorage.clearAuthData();
   }

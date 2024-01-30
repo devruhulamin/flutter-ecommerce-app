@@ -1,0 +1,1 @@
+typedef VoidCallbackString = Function(String);

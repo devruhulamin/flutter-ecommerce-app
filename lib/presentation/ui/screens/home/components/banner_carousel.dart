@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:crafty_bay_ruhulaminjr/data/model/slider_product.dart';
+import 'package:crafty_bay_ruhulaminjr/main.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/utilities/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +16,7 @@ class _BannerCarouselState extends State<BannerCarousel> {
   final _currentIdx = ValueNotifier<int>(1);
   @override
   Widget build(BuildContext context) {
+    widget.products.length.log();
     return Column(
       children: [
         CarouselSlider(

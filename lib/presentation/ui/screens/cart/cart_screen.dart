@@ -38,7 +38,9 @@ class CartScreen extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          const PriceWithActionButton(
+          PriceWithActionButton(
+            ontap: () {},
+            actionText: 'Check out',
             price: '8590',
           )
         ],

@@ -1,6 +1,9 @@
 import 'dart:convert';
 
 import 'package:crafty_bay_ruhulaminjr/data/model/nework_response.dart';
+import 'package:crafty_bay_ruhulaminjr/main.dart';
+import 'package:crafty_bay_ruhulaminjr/presentation/state/auth_controller.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class NetworkCaller {
@@ -43,8 +46,12 @@ class NetworkCaller {
       required Map<String, dynamic> body,
       String? token}) async {
     try {
+      Get.find<AuthController>().getToken().toString().log();
       final response = await http.post(Uri.parse(url),
-          headers: {'token': '$token', 'Content-Type': 'application/json'},
+          headers: {
+            'token': await Get.find<AuthController>().getToken() ?? '',
+            'Content-Type': 'application/json'
+          },
           body: jsonEncode(body));
       if (response.statusCode == 200) {
         final decodedResponse = jsonDecode(response.body);
