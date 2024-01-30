@@ -6,6 +6,7 @@ import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/product_details/c
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/products/component/product_fav_button.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/products/component/product_rating.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/utilities/extensions/colors_string_to_array.dart';
+import 'package:crafty_bay_ruhulaminjr/presentation/ui/utilities/extensions/str_to_list.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/widget/center_loading.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/widget/price_with_action_button.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/widget/primary_color_text.dart';
@@ -106,7 +107,10 @@ class _ProductDetailsState extends State<ProductDetails> {
                             style: TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.w500),
                           ),
-                          ProductSizeSelector(),
+                          ProductSizeSelector(
+                            sizes:
+                                productData.size?.getArraySliceByComma() ?? [],
+                          ),
                           const SizedBox(
                             height: 5,
                           ),

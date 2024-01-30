@@ -1,5 +1,3 @@
-import 'package:crafty_bay_ruhulaminjr/presentation/state/auth_controller.dart';
-import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/auth/enter_email_scree.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/utilities/app_logo.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/widget/bottom_navigation_bar_home.dart';
 import 'package:flutter/material.dart';
@@ -17,12 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(
       const Duration(seconds: 1),
       () async {
-        final isLoggedIn = await Get.find<AuthController>().isLoggedIn();
-        if (isLoggedIn) {
-          Get.offAll(() => const BottomNavBarHome());
-        } else {
-          Get.offAll(() => EnterYourEmailScreen());
-        }
+        Get.offAll(() => const BottomNavBarHome());
       },
     );
   }

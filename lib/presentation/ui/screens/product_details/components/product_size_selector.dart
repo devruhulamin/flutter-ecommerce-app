@@ -2,18 +2,14 @@ import 'package:crafty_bay_ruhulaminjr/presentation/ui/utilities/app_colors.dart
 import 'package:flutter/material.dart';
 
 class ProductSizeSelector extends StatelessWidget {
-  ProductSizeSelector({super.key});
+  final List<String> sizes;
+  ProductSizeSelector({super.key, required this.sizes});
   final isSelected = ValueNotifier<String>('M');
 
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: [
-        "M",
-        "X",
-        "XL",
-        "2l",
-      ]
+      children: sizes
           .map((e) => InkWell(
                 onTap: () {
                   isSelected.value = e;
