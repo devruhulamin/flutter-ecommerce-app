@@ -46,7 +46,9 @@ class NetworkCaller {
       required Map<String, dynamic> body,
       String? token}) async {
     try {
-      Get.find<AuthController>().getToken().toString().log();
+      Get.find<AuthController>().getToken().then((value) {
+        value?.log();
+      });
       final response = await http.post(Uri.parse(url),
           headers: {
             'token': await Get.find<AuthController>().getToken() ?? '',
