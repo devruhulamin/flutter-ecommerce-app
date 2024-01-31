@@ -10,8 +10,10 @@ class NetworkCaller {
   Future<NetworkResponse> getRequiest(
       {required String url, String? token}) async {
     try {
-      final response = await http.get(Uri.parse(url),
-          headers: {'token': '$token', 'Content-Type': 'application/json'});
+      final response = await http.get(Uri.parse(url), headers: {
+        'token': await Get.find<AuthController>().getToken() ?? token ?? '',
+        'Content-Type': 'application/json'
+      });
 
       if (response.statusCode == 200) {
         final decodedResponse = jsonDecode(response.body);
@@ -51,7 +53,7 @@ class NetworkCaller {
       });
       final response = await http.post(Uri.parse(url),
           headers: {
-            'token': await Get.find<AuthController>().getToken() ?? '',
+            'token': await Get.find<AuthController>().getToken() ?? token ?? '',
             'Content-Type': 'application/json'
           },
           body: jsonEncode(body));
