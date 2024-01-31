@@ -2,6 +2,7 @@ import 'package:crafty_bay_ruhulaminjr/presentation/state/add_to_cart_controller
 import 'package:crafty_bay_ruhulaminjr/presentation/state/auth_controller.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/state/banner_list_controller.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/state/bottom_nav_bar_controller.dart';
+import 'package:crafty_bay_ruhulaminjr/presentation/state/cart_item_controller.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/state/category_item_controller.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/state/category_products_controller.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/state/complete_profile_controller.dart';
@@ -31,5 +32,6 @@ class ControllerBinder extends Bindings {
     Get.put(CategoryProductsController());
     Get.put(ProductDetailsController());
     Get.put(AddToCartController());
+    Get.put(CartItemController());
   }
 }
