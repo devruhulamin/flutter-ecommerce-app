@@ -3,6 +3,7 @@ import 'package:crafty_bay_ruhulaminjr/data/model/slider_product.dart';
 import 'package:crafty_bay_ruhulaminjr/main.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/utilities/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:collection/collection.dart';
 
 class BannerCarousel extends StatefulWidget {
   final List<BannerProduct> products;
@@ -13,7 +14,7 @@ class BannerCarousel extends StatefulWidget {
 }
 
 class _BannerCarouselState extends State<BannerCarousel> {
-  final _currentIdx = ValueNotifier<int>(1);
+  final _currentIdx = ValueNotifier<int>(0);
   @override
   Widget build(BuildContext context) {
     widget.products.length.log();
@@ -24,7 +25,7 @@ class _BannerCarouselState extends State<BannerCarousel> {
             height: 180.0,
             viewportFraction: 1,
             onPageChanged: (index, reason) {
-              _currentIdx.value = index + 1;
+              _currentIdx.value = index;
             },
           ),
           items: widget.products.map((product) {
@@ -33,32 +34,27 @@ class _BannerCarouselState extends State<BannerCarousel> {
               margin: const EdgeInsets.symmetric(horizontal: 8),
               decoration: BoxDecoration(
                 color: AppColors.primaryColor,
+                image: DecorationImage(
+                    image: NetworkImage(product.image ??
+                        'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg'),
+                    fit: BoxFit.fitHeight),
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                child: Stack(
                   children: [
-                    Image.network(
-                      product.image ??
-                          'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg',
-                      fit: BoxFit.cover,
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
                           product.title ?? "No Title Found",
                           style: Theme.of(context)
                               .textTheme
                               .titleMedium
-                              ?.copyWith(color: Colors.white),
+                              ?.copyWith(color: Colors.black),
                         ),
                         const SizedBox(height: 8),
                         SizedBox(
@@ -81,10 +77,11 @@ class _BannerCarouselState extends State<BannerCarousel> {
         ValueListenableBuilder<int>(
           valueListenable: _currentIdx,
           builder: (context, value, child) {
+            print(_currentIdx);
             return Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ...widget.products.map((e) {
+                ...widget.products.mapIndexed((index, pd) {
                   return Container(
                     width: 16,
                     height: 16,
@@ -92,7 +89,7 @@ class _BannerCarouselState extends State<BannerCarousel> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
                         border: Border.all(color: Colors.grey.shade500),
-                        color: value == e.id
+                        color: value == index
                             ? AppColors.primaryColor
                             : Colors.white),
                   );
