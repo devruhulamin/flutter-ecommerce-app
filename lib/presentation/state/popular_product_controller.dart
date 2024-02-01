@@ -24,6 +24,7 @@ class PopularProductsController extends GetxController {
         products.add(ProductItem().fromJson(data));
       }
       _products = products;
+      print(_products[0].id);
 
       return true;
     } catch (e) {

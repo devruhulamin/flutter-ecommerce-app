@@ -12,7 +12,7 @@ class ProductDetailsModel {
   int? productId;
   String? createdAt;
   String? updatedAt;
-  ProductItem? productItem;
+  ProductItem? product;
 
   ProductDetailsModel(
       {this.id,
@@ -26,7 +26,7 @@ class ProductDetailsModel {
       this.productId,
       this.createdAt,
       this.updatedAt,
-      this.productItem});
+      this.product});
 
   ProductDetailsModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -40,8 +40,8 @@ class ProductDetailsModel {
     productId = json['product_id'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    productItem = json["product"] != null
-        ? ProductItem().fromJson(json["product"])
+    product = json['product'] != null
+        ? ProductItem().fromJson(json['product'])
         : null;
   }
 }

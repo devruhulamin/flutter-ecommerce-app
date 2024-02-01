@@ -28,7 +28,7 @@ class _ProductDetailsState extends State<ProductDetails> {
   @override
   void initState() {
     super.initState();
-    Get.find<ProductDetailsController>().loadProduct(widget.id);
+    Get.find<ProductDetailsController>().loadProduct(1);
   }
 
   @override
@@ -40,141 +40,151 @@ class _ProductDetailsState extends State<ProductDetails> {
       appBar: AppBar(title: const Text("Product Details")),
       body: GetBuilder<ProductDetailsController>(builder: (controller) {
         final productData = controller.getProductDetails;
-        return Visibility(
-          visible: controller.isloading == false,
-          replacement: const CenterLoading(),
-          child: Column(
-            children: [
-              SingleChildScrollView(
+        return controller.isEmpty
+            ? const Center(
+                child: Text("Opps Products Details is Empty"),
+              )
+            : Visibility(
+                visible: controller.isloading == false,
+                replacement: const CenterLoading(),
                 child: Column(
                   children: [
-                    HeroCarousel(
-                      urls: [
-                        productData.img1 ?? AssetPath.placeHolderUrl,
-                        productData.img2 ?? AssetPath.placeHolderUrl,
-                        productData.img2 ?? AssetPath.placeHolderUrl,
-                        productData.img2 ?? AssetPath.placeHolderUrl,
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8),
+                    SingleChildScrollView(
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              SizedBox(
-                                width: 250,
-                                child: Text(
-                                  '${productData.productItem?.title}',
-                                  style: const TextStyle(
+                          HeroCarousel(
+                            urls: [
+                              productData.img1 ?? AssetPath.placeHolderUrl,
+                              productData.img2 ?? AssetPath.placeHolderUrl,
+                              productData.img2 ?? AssetPath.placeHolderUrl,
+                              productData.img2 ?? AssetPath.placeHolderUrl,
+                            ],
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    SizedBox(
+                                      width: 250,
+                                      child: Text(
+                                        '${productData.product?.title}',
+                                        style: const TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500),
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                    QuantitySelector(),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    ProductRating(
+                                      rating: productData.product?.star,
+                                    ),
+                                    const SizedBox(width: 8),
+                                    const PrimaryColorText(text: 'Reviews'),
+                                    const SizedBox(width: 8),
+                                    const ProductFavoriteButton()
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                const Text(
+                                  "Color:",
+                                  style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.w500),
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
                                 ),
-                              ),
-                              QuantitySelector(),
-                            ],
+                                ProductColorSelector(
+                                  colors: productData.color ?? '',
+                                  onSelected: (String selectedColor) {
+                                    color = selectedColor;
+                                  },
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                const Text(
+                                  "Size:",
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                ProductSizeSelector(
+                                  sizes: productData.size
+                                          ?.getArraySliceByComma() ??
+                                      [],
+                                  onSelected: (String selectedSize) {
+                                    size = selectedSize;
+                                  },
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                const Text(
+                                  "Description:",
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                Text(
+                                  "${productData.des}",
+                                  style: const TextStyle(
+                                      fontSize: 14, color: Colors.grey),
+                                )
+                              ],
+                            ),
                           ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              ProductRating(
-                                rating: productData.productItem?.star,
-                              ),
-                              const SizedBox(width: 8),
-                              const PrimaryColorText(text: 'Reviews'),
-                              const SizedBox(width: 8),
-                              const ProductFavoriteButton()
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          const Text(
-                            "Color:",
-                            style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.w500),
-                          ),
-                          ProductColorSelector(
-                            colors: productData.color ?? '',
-                            onSelected: (String selectedColor) {
-                              color = selectedColor;
-                            },
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          const Text(
-                            "Size:",
-                            style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.w500),
-                          ),
-                          ProductSizeSelector(
-                            sizes:
-                                productData.size?.getArraySliceByComma() ?? [],
-                            onSelected: (String selectedSize) {
-                              size = selectedSize;
-                            },
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          const Text(
-                            "Description:",
-                            style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.w500),
-                          ),
-                          Text(
-                            "${productData.des}",
-                            style: const TextStyle(
-                                fontSize: 14, color: Colors.grey),
-                          )
                         ],
                       ),
                     ),
+                    const Spacer(),
+                    SizedBox(
+                        height: 80,
+                        child: PriceWithActionButton(
+                          ontap: () async {
+                            if (color != null && size != null) {
+                              final result =
+                                  await Get.find<AddToCartController>()
+                                      .addToCart(CartItemPayload(
+                                          productId: productData.id,
+                                          color: color,
+                                          size: size));
+                              if (result) {
+                                Get.showSnackbar(const GetSnackBar(
+                                  title: 'Add to cart succed',
+                                  message: 'product has been added to cart',
+                                  duration: Duration(seconds: 1),
+                                ));
+                              } else {
+                                Get.offAll(() => EnterYourEmailScreen());
+                              }
+                            } else {
+                              Get.showSnackbar(const GetSnackBar(
+                                title: 'Could not add',
+                                message: 'select color and size',
+                                duration: Duration(seconds: 1),
+                              ));
+                            }
+                          },
+                          actionText: 'Add to cart',
+                          price: productData.product?.price ?? '00',
+                        )),
                   ],
                 ),
-              ),
-              const Spacer(),
-              SizedBox(
-                  height: 80,
-                  child: PriceWithActionButton(
-                    ontap: () async {
-                      if (color != null && size != null) {
-                        final result = await Get.find<AddToCartController>()
-                            .addToCart(CartItemPayload(
-                                productId: productData.id,
-                                color: color,
-                                size: size));
-                        if (result) {
-                          Get.showSnackbar(const GetSnackBar(
-                            title: 'Add to cart succed',
-                            message: 'product has been added to cart',
-                            duration: Duration(seconds: 1),
-                          ));
-                        } else {
-                          Get.offAll(() => EnterYourEmailScreen());
-                        }
-                      } else {
-                        Get.showSnackbar(const GetSnackBar(
-                          title: 'Could not add',
-                          message: 'select color and size',
-                          duration: Duration(seconds: 1),
-                        ));
-                      }
-                    },
-                    actionText: 'Add to cart',
-                    price: productData.productItem?.price ?? '00',
-                  )),
-            ],
-          ),
-        );
+              );
       }),
     );
   }

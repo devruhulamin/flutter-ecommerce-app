@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart' show immutable;
 
 @immutable
 class ApiUrl {
-  static const baseUrl = 'https://ecom-api.teamrabbil.com/api';
+  static const baseUrl = 'http://ecom-api.teamrabbil.com/api';
   static String otpSendUrl({required String email}) =>
       '$baseUrl/UserLogin/$email';
   static String otpVerifyUrl({required String email, required String otp}) =>
