@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ProductRating extends StatelessWidget {
-  final double? rating;
+  final int? rating;
   const ProductRating({super.key, required this.rating});
 
   @override

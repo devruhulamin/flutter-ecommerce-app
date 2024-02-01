@@ -38,8 +38,8 @@ class ProductCard extends StatelessWidget {
                       topRight: Radius.circular(15)),
                   color: Color.fromARGB(255, 222, 255, 255),
                 ),
-                child: Image.asset(
-                  AssetPath.shoePng,
+                child: Image.network(
+                  product.image ?? AssetPath.placeHolderUrl,
                   fit: BoxFit.cover,
                 ),
               ),
