@@ -13,16 +13,15 @@ class ProductColorSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorsList = colors.getColorsList();
-    final hexColorList = colors.getArraySliceByComma();
-    String seletedColor = hexColorList[isSelected.value];
+    final colorStreList = colors.getArraySliceByComma();
+    String seletedColor = colorStreList[isSelected.value];
     onSelected(seletedColor);
     return Row(
-      children: colorsList
+      children: colorStreList
           .mapIndexed((e, color) => InkWell(
                 onTap: () {
                   isSelected.value = e;
-                  seletedColor = hexColorList[e];
+                  seletedColor = colorStreList[e];
                   onSelected(seletedColor);
                 },
                 borderRadius: BorderRadius.circular(15),
@@ -33,7 +32,7 @@ class ProductColorSelector extends StatelessWidget {
                       builder: (context, value, child) {
                         return CircleAvatar(
                           radius: 15,
-                          backgroundColor: color,
+                          backgroundColor: textToColor(color),
                           child: value == e
                               ? const Icon(
                                   Icons.done,
@@ -46,5 +45,18 @@ class ProductColorSelector extends StatelessWidget {
               ))
           .toList(),
     );
+  }
+}
+
+Color textToColor(String text) {
+  switch (text) {
+    case 'Red':
+      return Colors.red;
+    case 'Green':
+      return Colors.green;
+    case 'White':
+      return Colors.grey;
+    default:
+      return Colors.black;
   }
 }
