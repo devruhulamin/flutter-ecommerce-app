@@ -1,3 +1,4 @@
+import 'package:crafty_bay_ruhulaminjr/presentation/state/auth_controller.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/utilities/app_logo.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/widget/bottom_navigation_bar_home.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(
       const Duration(seconds: 1),
       () async {
+        await Get.find<AuthController>().initilize();
         Get.offAll(() => const BottomNavBarHome());
       },
     );

@@ -44,7 +44,7 @@ class _BottomNavBarHomeState extends State<BottomNavBarHome> {
         body: screen[controller.getIndex],
         bottomNavigationBar: BottomNavigationBar(
             currentIndex: controller.getIndex,
-            onTap: (value) {
+            onTap: (value) async {
               controller.changeIndex(value);
             },
             selectedItemColor: AppColors.primaryColor,

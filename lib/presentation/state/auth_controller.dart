@@ -8,7 +8,6 @@ class AuthController extends GetxController {
   final _localStorage = AuthLocalStorage();
 
   Future<bool> isLoggedIn() async {
-    await initilize();
     return token != null;
   }
 
@@ -27,11 +26,13 @@ class AuthController extends GetxController {
     token = await _localStorage.getToken();
   }
 
-  Future<String?> getToken() async {
-    return await _localStorage.getToken();
+  String? getToken() {
+    return token;
   }
 
   Future<bool> logOut() async {
+    token = null;
+    userProfile = null;
     return _localStorage.clearAuthData();
   }
 }
