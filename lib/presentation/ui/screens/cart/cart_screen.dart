@@ -47,7 +47,9 @@ class _CartScreenState extends State<CartScreen> {
                 child: ListView.separated(
                   itemCount: controller.getItems.length,
                   itemBuilder: (context, index) {
-                    return const CartItem();
+                    return CartItem(
+                      cartitem: controller.getItems[index],
+                    );
                   },
                   separatorBuilder: (context, index) => const Divider(
                     height: 2,
