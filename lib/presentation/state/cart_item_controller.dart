@@ -10,6 +10,8 @@ class CartItemController extends GetxController {
   String get getErrorMessage => _errorMessage;
   List<CartItemModel> _items = [];
   List<CartItemModel> get getItems => _items;
+  final RxDouble _totalCardItemPrice = 0.0.obs;
+  RxDouble get totalCardItemPrice => _totalCardItemPrice;
 
   Future<bool> loadItems() async {
     _isloading = true;
@@ -23,6 +25,7 @@ class CartItemController extends GetxController {
           items.add(CartItemModel.fromJson(item));
         }
         _items = items;
+        calculateTotal();
         return true;
       }
       return false;
@@ -33,5 +36,21 @@ class CartItemController extends GetxController {
       _isloading = false;
       update();
     }
+  }
+
+  void updatequantity(int id, int qty) {
+    _items.firstWhere((element) => element.id == id).qty = qty.toString();
+    calculateTotal();
+  }
+
+  void calculateTotal() {
+    double totalprice = 0.0;
+    print('calculate totl called');
+    for (var item in _items) {
+      final price = double.parse(item.price ?? "0.0");
+      final qty = int.parse(item.qty ?? '1');
+      totalprice += (price * qty);
+    }
+    totalCardItemPrice.value = totalprice;
   }
 }

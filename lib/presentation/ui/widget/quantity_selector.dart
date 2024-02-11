@@ -1,12 +1,35 @@
+import 'package:crafty_bay_ruhulaminjr/data/model/cart_item_mode.dart';
+import 'package:crafty_bay_ruhulaminjr/presentation/state/cart_item_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class QuantitySelector extends StatelessWidget {
-  QuantitySelector({super.key});
-
-  final itemQuantity = ValueNotifier<int>(1);
+  final CartItemModel cartItem;
+  const QuantitySelector({super.key, required this.cartItem});
 
   @override
   Widget build(BuildContext context) {
+    final qty = int.parse(cartItem.qty ?? '1');
+    const stock = 9; //cartItem.product?.stock ?? 1;
+    final itemQuantity = ValueNotifier<int>(qty);
+    void updateQuantity(String op) {
+      if (op == '-') {
+        if (itemQuantity.value > 1) {
+          itemQuantity.value = itemQuantity.value - 1;
+          cartItem.qty = itemQuantity.value.toString();
+          Get.find<CartItemController>()
+              .updatequantity(cartItem.id!, itemQuantity.value);
+        }
+      } else if (op == '+') {
+        if (itemQuantity.value < stock) {
+          itemQuantity.value = itemQuantity.value + 1;
+          cartItem.qty = itemQuantity.value.toString();
+          Get.find<CartItemController>()
+              .updatequantity(cartItem.id!, itemQuantity.value);
+        }
+      }
+    }
+
     return ValueListenableBuilder<int>(
       valueListenable: itemQuantity,
       builder: (context, value, _) {
@@ -32,7 +55,7 @@ class QuantitySelector extends StatelessWidget {
                     )),
               ),
               Text(
-                '0$value',
+                '0${itemQuantity.value}',
                 style: const TextStyle(fontSize: 16),
               ),
               SizedBox(
@@ -56,17 +79,5 @@ class QuantitySelector extends StatelessWidget {
         );
       },
     );
-  }
-
-  void updateQuantity(String op) {
-    if (op == '-') {
-      if (itemQuantity.value > 1) {
-        itemQuantity.value = itemQuantity.value - 1;
-      }
-    } else if (op == '+') {
-      if (itemQuantity.value < 9) {
-        itemQuantity.value = itemQuantity.value + 1;
-      }
-    }
   }
 }

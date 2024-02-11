@@ -22,7 +22,7 @@ class ProfileDataController extends GetxController {
           _isCompleted = false;
           update();
         } else {
-          _profile = Profile.fromJson(profiledata[0]);
+          _profile = Profile.fromJson(profiledata);
           _isCompleted = true;
           update();
         }
@@ -31,6 +31,7 @@ class ProfileDataController extends GetxController {
         return false;
       }
     } catch (e) {
+      print(e.toString());
       return false;
     } finally {
       _isloading = false;

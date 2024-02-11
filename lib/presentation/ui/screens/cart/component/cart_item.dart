@@ -52,7 +52,9 @@ class CartItem extends StatelessWidget {
                       ),
                       SizedBox(
                         width: 100,
-                        child: QuantitySelector(),
+                        child: QuantitySelector(
+                          cartItem: cartitem,
+                        ),
                       )
                     ],
                   ),

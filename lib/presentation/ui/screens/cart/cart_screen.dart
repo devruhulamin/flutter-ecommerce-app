@@ -61,11 +61,14 @@ class _CartScreenState extends State<CartScreen> {
           const SizedBox(
             height: 20,
           ),
-          PriceWithActionButton(
-            ontap: () {},
-            actionText: 'Check out',
-            price: '8590',
-          )
+          Obx(() {
+            final price = Get.find<CartItemController>().totalCardItemPrice;
+            return PriceWithActionButton(
+              ontap: () {},
+              actionText: 'Check out',
+              price: price.obs.value.toString(),
+            );
+          })
         ],
       ),
     );

@@ -80,7 +80,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                         overflow: TextOverflow.ellipsis,
                                       ),
                                     ),
-                                    QuantitySelector(),
+                                    // QuantitySelector(),
                                   ],
                                 ),
                                 const SizedBox(
