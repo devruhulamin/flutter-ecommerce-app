@@ -1,7 +1,6 @@
 import 'package:crafty_bay_ruhulaminjr/data/model/profile.dart';
 import 'package:crafty_bay_ruhulaminjr/data/service/newtwork_caller.dart';
 import 'package:crafty_bay_ruhulaminjr/data/utility/api_url.dart';
-import 'package:crafty_bay_ruhulaminjr/main.dart';
 import 'package:get/get.dart';
 
 class ProfileDataController extends GetxController {
@@ -32,7 +31,6 @@ class ProfileDataController extends GetxController {
         return false;
       }
     } catch (e) {
-      e.log();
       return false;
     } finally {
       _isloading = false;

@@ -1,6 +1,5 @@
 import 'package:crafty_bay_ruhulaminjr/data/service/newtwork_caller.dart';
 import 'package:crafty_bay_ruhulaminjr/data/utility/api_url.dart';
-import 'package:crafty_bay_ruhulaminjr/main.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/state/auth_controller.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/state/profile_data_controller.dart';
 import 'package:get/get.dart';
@@ -26,7 +25,6 @@ class VerifyOtpController extends GetxController {
         await Future.delayed(const Duration(seconds: 3));
         final result =
             await Get.find<ProfileDataController>().readProfileData(_token);
-        result.log();
         if (result) {
           __isCompleted = Get.find<ProfileDataController>().isProfileCompleted;
           update();

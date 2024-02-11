@@ -1,6 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:crafty_bay_ruhulaminjr/data/model/slider_product.dart';
-import 'package:crafty_bay_ruhulaminjr/main.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/utilities/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
@@ -17,7 +16,6 @@ class _BannerCarouselState extends State<BannerCarousel> {
   final _currentIdx = ValueNotifier<int>(0);
   @override
   Widget build(BuildContext context) {
-    widget.products.length.log();
     return Column(
       children: [
         CarouselSlider(
@@ -77,7 +75,6 @@ class _BannerCarouselState extends State<BannerCarousel> {
         ValueListenableBuilder<int>(
           valueListenable: _currentIdx,
           builder: (context, value, child) {
-            print(_currentIdx);
             return Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

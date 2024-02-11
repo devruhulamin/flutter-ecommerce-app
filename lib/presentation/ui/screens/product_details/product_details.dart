@@ -160,8 +160,8 @@ class _ProductDetailsState extends State<ProductDetails> {
                                   await Get.find<AddToCartController>()
                                       .addToCart(CartItemPayload(
                                           productId: productData.id,
-                                          color: color,
-                                          size: size));
+                                          color: productData.color,
+                                          size: productData.size));
                               if (result) {
                                 Get.showSnackbar(const GetSnackBar(
                                   title: 'Add to cart succed',

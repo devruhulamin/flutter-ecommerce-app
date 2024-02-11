@@ -19,8 +19,25 @@ class CompleteProfileController extends GetxController {
     _isloading = true;
     update();
     try {
+      final profileData = {
+        "cus_name": "${profile.firstName} ${profile.lastName}",
+        "cus_add": profile.shippingAddress,
+        "cus_city": profile.city,
+        "cus_state": profile.city,
+        "cus_postcode": "1207",
+        "cus_country": "Bangladesh",
+        "cus_phone": profile.phoneNumber,
+        "cus_fax": profile.phoneNumber,
+        "ship_name": "${profile.firstName} ${profile.lastName}",
+        "ship_add": profile.shippingAddress,
+        "ship_city": profile.city,
+        "ship_state": profile.city,
+        "ship_postcode": "1207",
+        "ship_country": "Bangladesh",
+        "ship_phone": profile.phoneNumber
+      };
       final response = await NetworkCaller().postRequiest(
-          url: ApiUrl.createProfileUrl, token: token, body: profile);
+          url: ApiUrl.createProfileUrl, token: token, body: profileData);
       if (response.isSuccess) {
         _profile = Profile.fromJson(response.responseData['data']);
         Get.find<AuthController>().saveToken(token);

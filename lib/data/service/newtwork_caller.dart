@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:crafty_bay_ruhulaminjr/data/model/nework_response.dart';
-import 'package:crafty_bay_ruhulaminjr/main.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/state/auth_controller.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -9,13 +8,11 @@ import 'package:http/http.dart' as http;
 class NetworkCaller {
   Future<NetworkResponse> getRequiest(
       {required String url, String? token}) async {
-    print(token);
     final authToken = (Get.find<AuthController>().getToken() ?? token) ?? '';
+    print(authToken);
     try {
       final response = await http.get(Uri.parse(url),
           headers: {'token': authToken, 'content-type': 'application/json'});
-      authToken.log();
-      print('respond status code ${response.statusCode}');
       if (response.statusCode == 200) {
         final decodedResponse = jsonDecode(response.body);
         if (decodedResponse['msg'] == "success") {

@@ -2,7 +2,6 @@ import 'package:crafty_bay_ruhulaminjr/data/model/popular_product_item.dart';
 import 'package:crafty_bay_ruhulaminjr/data/service/newtwork_caller.dart';
 import 'package:crafty_bay_ruhulaminjr/data/typedefs/remarks_type.dart';
 import 'package:crafty_bay_ruhulaminjr/data/utility/api_url.dart';
-import 'package:crafty_bay_ruhulaminjr/main.dart';
 import 'package:get/get.dart';
 
 class PopularProductsController extends GetxController {
@@ -24,11 +23,9 @@ class PopularProductsController extends GetxController {
         products.add(ProductItem().fromJson(data));
       }
       _products = products;
-      print(_products[0].id);
 
       return true;
     } catch (e) {
-      e.log();
       return false;
     } finally {
       _isloading = false;

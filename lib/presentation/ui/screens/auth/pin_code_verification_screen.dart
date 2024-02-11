@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:crafty_bay_ruhulaminjr/main.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/state/verify_otp_controller.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/auth/complete_profile_screen.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/utilities/app_colors.dart';
@@ -107,7 +106,6 @@ class _PinCodeVerifyScreenState extends State<PinCodeVerifyScreen> {
                 onCompleted: (v) {
                   _pinValue = v;
                   _isPinInputted = true;
-                  _pinValue.log();
                   setState(() {});
                 },
               ),

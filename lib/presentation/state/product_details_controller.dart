@@ -1,7 +1,6 @@
 import 'package:crafty_bay_ruhulaminjr/data/model/product_details_model.dart';
 import 'package:crafty_bay_ruhulaminjr/data/service/newtwork_caller.dart';
 import 'package:crafty_bay_ruhulaminjr/data/utility/api_url.dart';
-import 'package:crafty_bay_ruhulaminjr/main.dart';
 import 'package:get/get.dart';
 
 class ProductDetailsController extends GetxController {
@@ -35,7 +34,6 @@ class ProductDetailsController extends GetxController {
         return false;
       }
     } catch (e) {
-      e.log();
       _errorMessage = 'Error Was $e';
       return false;
     } finally {
