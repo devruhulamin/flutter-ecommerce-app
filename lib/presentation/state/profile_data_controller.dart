@@ -31,7 +31,6 @@ class ProfileDataController extends GetxController {
         return false;
       }
     } catch (e) {
-      print(e.toString());
       return false;
     } finally {
       _isloading = false;

@@ -1,5 +1,5 @@
 class Profile {
-  int? id;
+  num? id;
   String? cusName;
   String? cusAdd;
   String? cusCity;
@@ -15,7 +15,7 @@ class Profile {
   String? shipPostcode;
   String? shipCountry;
   String? shipPhone;
-  int? userId;
+  num? userId;
   String? createdAt;
   String? updatedAt;
   User? user;

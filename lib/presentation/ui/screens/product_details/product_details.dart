@@ -12,7 +12,6 @@ import 'package:crafty_bay_ruhulaminjr/presentation/ui/utilities/extensions/str_
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/widget/center_loading.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/widget/price_with_action_button.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/widget/primary_color_text.dart';
-import 'package:crafty_bay_ruhulaminjr/presentation/ui/widget/quantity_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -45,7 +45,6 @@ class CartItemController extends GetxController {
 
   void calculateTotal() {
     double totalprice = 0.0;
-    print('calculate totl called');
     for (var item in _items) {
       final price = double.parse(item.price ?? "0.0");
       final qty = int.parse(item.qty ?? '1');

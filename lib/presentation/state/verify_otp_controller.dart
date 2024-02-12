@@ -22,7 +22,7 @@ class VerifyOtpController extends GetxController {
       final response = await NetworkCaller().getRequiest(url: verifyUrl);
       if (response.isSuccess) {
         _token = response.responseData['data'];
-        await Future.delayed(const Duration(seconds: 3));
+        await Future.delayed(const Duration(seconds: 1));
         final result =
             await Get.find<ProfileDataController>().readProfileData(_token);
         if (result) {
