@@ -25,6 +25,7 @@ class CartItemController extends GetxController {
           items.add(CartItemModel.fromJson(item));
         }
         _items = items;
+
         calculateTotal();
         return true;
       }
@@ -65,7 +66,7 @@ class CartItemController extends GetxController {
   void calculateTotal() {
     double totalprice = 0.0;
     for (var item in _items) {
-      final price = double.parse(item.price ?? "0.0");
+      final price = double.parse(item.product?.price ?? "0.0");
       final qty = int.parse(item.qty ?? '1');
       totalprice += (price * qty);
     }

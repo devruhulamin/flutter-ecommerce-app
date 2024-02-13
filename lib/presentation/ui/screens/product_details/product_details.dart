@@ -33,7 +33,7 @@ class _ProductDetailsState extends State<ProductDetails> {
 
   String? color;
   String? size;
-  int? qty;
+  int? qty = 1;
 
   @override
   Widget build(BuildContext context) {
