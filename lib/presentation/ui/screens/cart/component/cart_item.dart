@@ -1,7 +1,9 @@
 import 'package:crafty_bay_ruhulaminjr/data/model/cart_item_mode.dart';
+import 'package:crafty_bay_ruhulaminjr/presentation/state/cart_item_controller.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/utilities/app_colors.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/widget/quantity_selector.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CartItem extends StatelessWidget {
   final CartItemModel cartitem;
@@ -33,7 +35,10 @@ class CartItem extends StatelessWidget {
                   subtitle:
                       Text('Color: ${cartitem.color}, Size: ${cartitem.size}'),
                   trailing: IconButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      Get.find<CartItemController>()
+                          .deleteItem(cartitem.productId);
+                    },
                     icon: const Icon(Icons.delete),
                   ),
                 ),
@@ -53,9 +58,14 @@ class CartItem extends StatelessWidget {
                       SizedBox(
                         width: 100,
                         child: QuantitySelector(
-                          cartItem: cartitem,
+                          onQuntityChange: (quantity, id) {
+                            Get.find<CartItemController>()
+                                .updatequantity(id, quantity);
+                          },
+                          productId: cartitem.productId!,
+                          qty: int.parse(cartitem.qty ?? '1'),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 )

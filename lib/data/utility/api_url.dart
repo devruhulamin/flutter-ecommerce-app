@@ -19,4 +19,5 @@ class ApiUrl {
       '$baseUrl/ProductDetailsById/$id';
   static String addToCartUrl = '$baseUrl/CreateCartList';
   static String getCartItemUrl = '$baseUrl/CartList';
+  static String deleteCartItem(String id) => '$baseUrl/DeleteCartList/$id';
 }

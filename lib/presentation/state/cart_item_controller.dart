@@ -38,8 +38,27 @@ class CartItemController extends GetxController {
     }
   }
 
+  Future<void> deleteItem(int? id) async {
+    _isloading = true;
+    update();
+    try {
+      final response = await NetworkCaller()
+          .getRequiest(url: ApiUrl.deleteCartItem(id.toString()));
+      // print(response.isSuccess);
+      if (response.isSuccess) {
+        await loadItems();
+      }
+    } catch (e) {
+      _errorMessage = e.toString();
+    } finally {
+      _isloading = false;
+      update();
+    }
+  }
+
   void updatequantity(int id, int qty) {
-    _items.firstWhere((element) => element.id == id).qty = qty.toString();
+    _items.firstWhere((element) => element.productId == id).qty =
+        qty.toString();
     calculateTotal();
   }
 

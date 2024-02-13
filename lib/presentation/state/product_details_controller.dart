@@ -12,6 +12,14 @@ class ProductDetailsController extends GetxController {
   String get errorMessage => _errorMessage;
   ProductDetailsModel _productDetailsModel = ProductDetailsModel();
   ProductDetailsModel get getProductDetails => _productDetailsModel;
+  final _totalPrice = 0.0.obs;
+  RxDouble get totalPrice => _totalPrice;
+  double _pdPrice = 0.0;
+  void updateQuantity(
+    int quantiy,
+  ) {
+    _totalPrice.value = _pdPrice * quantiy;
+  }
 
   Future<bool> loadProduct(int id) async {
     _isloading = true;
@@ -28,6 +36,8 @@ class ProductDetailsController extends GetxController {
         }
         _productDetailsModel =
             ProductDetailsModel.fromJson(response.responseData['data'][0]);
+        _pdPrice = double.parse(_productDetailsModel.product?.price ?? '0.0');
+        _totalPrice.value = _pdPrice;
 
         return true;
       } else {

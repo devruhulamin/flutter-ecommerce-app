@@ -8,6 +8,7 @@ class NetworkCaller {
   Future<NetworkResponse> getRequiest(
       {required String url, String? token}) async {
     final authToken = Get.find<AuthController>().getToken();
+    print(authToken);
     try {
       final response = await http.get(Uri.parse(url), headers: {
         'token': '${token ?? authToken}',

@@ -1,31 +1,34 @@
-import 'package:crafty_bay_ruhulaminjr/data/model/cart_item_mode.dart';
-import 'package:crafty_bay_ruhulaminjr/presentation/state/cart_item_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
+typedef VoidFuncWithParams = Function(int quantity, int id);
 
 class QuantitySelector extends StatelessWidget {
-  final CartItemModel cartItem;
-  const QuantitySelector({super.key, required this.cartItem});
+  final int productId;
+  final int? qty;
+  final double? price;
+  final VoidFuncWithParams onQuntityChange;
+  const QuantitySelector(
+      {super.key,
+      required this.productId,
+      this.qty = 1,
+      this.price,
+      required this.onQuntityChange});
 
   @override
   Widget build(BuildContext context) {
-    final qty = int.parse(cartItem.qty ?? '1');
-    const stock = 9; //cartItem.product?.stock ?? 1;
-    final itemQuantity = ValueNotifier<int>(qty);
+    const stock = 9;
+    final itemQuantity = ValueNotifier<int>(qty ?? 1);
     void updateQuantity(String op) {
       if (op == '-') {
         if (itemQuantity.value > 1) {
           itemQuantity.value = itemQuantity.value - 1;
-          cartItem.qty = itemQuantity.value.toString();
-          Get.find<CartItemController>()
-              .updatequantity(cartItem.id!, itemQuantity.value);
+
+          onQuntityChange(itemQuantity.value, productId);
         }
       } else if (op == '+') {
         if (itemQuantity.value < stock) {
           itemQuantity.value = itemQuantity.value + 1;
-          cartItem.qty = itemQuantity.value.toString();
-          Get.find<CartItemController>()
-              .updatequantity(cartItem.id!, itemQuantity.value);
+          onQuntityChange(itemQuantity.value, productId);
         }
       }
     }

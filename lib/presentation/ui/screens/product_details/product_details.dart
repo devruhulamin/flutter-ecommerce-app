@@ -12,6 +12,7 @@ import 'package:crafty_bay_ruhulaminjr/presentation/ui/utilities/extensions/str_
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/widget/center_loading.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/widget/price_with_action_button.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/widget/primary_color_text.dart';
+import 'package:crafty_bay_ruhulaminjr/presentation/ui/widget/quantity_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -30,11 +31,12 @@ class _ProductDetailsState extends State<ProductDetails> {
     Get.find<ProductDetailsController>().loadProduct(1);
   }
 
+  String? color;
+  String? size;
+  int? qty;
+
   @override
   Widget build(BuildContext context) {
-    String? color;
-    String? size;
-
     return Scaffold(
       appBar: AppBar(title: const Text("Product Details")),
       body: GetBuilder<ProductDetailsController>(builder: (controller) {
@@ -79,7 +81,16 @@ class _ProductDetailsState extends State<ProductDetails> {
                                         overflow: TextOverflow.ellipsis,
                                       ),
                                     ),
-                                    // QuantitySelector(),
+                                    QuantitySelector(
+                                      productId: productData.productId ?? 1,
+                                      qty: 1,
+                                      price: double.parse(
+                                          productData.product?.price ?? '0.0'),
+                                      onQuntityChange: (quantity, pdId) {
+                                        qty = quantity;
+                                        controller.updateQuantity(quantity);
+                                      },
+                                    )
                                   ],
                                 ),
                                 const SizedBox(
@@ -152,35 +163,41 @@ class _ProductDetailsState extends State<ProductDetails> {
                     const Spacer(),
                     SizedBox(
                         height: 80,
-                        child: PriceWithActionButton(
-                          ontap: () async {
-                            if (color != null && size != null) {
-                              final result =
-                                  await Get.find<AddToCartController>()
-                                      .addToCart(CartItemPayload(
-                                          productId: productData.id,
-                                          color: productData.color,
-                                          size: productData.size));
-                              if (result) {
+                        child: Obx(() {
+                          final totalPrice =
+                              Get.find<ProductDetailsController>().totalPrice;
+                          return PriceWithActionButton(
+                            ontap: () async {
+                              if (color != null && size != null) {
+                                final result =
+                                    await Get.find<AddToCartController>()
+                                        .addToCart(CartItemPayload(
+                                  productId: productData.id,
+                                  color: productData.color,
+                                  size: productData.size,
+                                  qty: qty,
+                                ));
+                                if (result) {
+                                  Get.showSnackbar(const GetSnackBar(
+                                    title: 'Add to cart succed',
+                                    message: 'product has been added to cart',
+                                    duration: Duration(seconds: 1),
+                                  ));
+                                } else {
+                                  Get.offAll(() => EnterYourEmailScreen());
+                                }
+                              } else {
                                 Get.showSnackbar(const GetSnackBar(
-                                  title: 'Add to cart succed',
-                                  message: 'product has been added to cart',
+                                  title: 'Could not add',
+                                  message: 'select color and size',
                                   duration: Duration(seconds: 1),
                                 ));
-                              } else {
-                                Get.offAll(() => EnterYourEmailScreen());
                               }
-                            } else {
-                              Get.showSnackbar(const GetSnackBar(
-                                title: 'Could not add',
-                                message: 'select color and size',
-                                duration: Duration(seconds: 1),
-                              ));
-                            }
-                          },
-                          actionText: 'Add to cart',
-                          price: productData.product?.price ?? '00',
-                        )),
+                            },
+                            actionText: 'Add to cart',
+                            price: totalPrice.value.toString(),
+                          );
+                        })),
                   ],
                 ),
               );
