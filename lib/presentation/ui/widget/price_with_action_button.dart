@@ -3,7 +3,7 @@ import 'package:crafty_bay_ruhulaminjr/presentation/ui/widget/primary_color_text
 import 'package:flutter/material.dart';
 
 class PriceWithActionButton extends StatelessWidget {
-  final VoidCallback ontap;
+  final VoidCallback? ontap;
   final String actionText;
   final String price;
   const PriceWithActionButton(

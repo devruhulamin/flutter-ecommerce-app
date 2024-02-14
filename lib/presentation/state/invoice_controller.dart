@@ -17,6 +17,7 @@ class InvoiceController extends GetxController {
       update();
       final response =
           await NetworkCaller().getRequiest(url: ApiUrl.createInvoice);
+
       if (response.isSuccess) {
         if (response.responseData['data'].isEmpty) {
           return true;

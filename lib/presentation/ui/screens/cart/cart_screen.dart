@@ -1,6 +1,7 @@
 import 'package:crafty_bay_ruhulaminjr/presentation/state/bottom_nav_bar_controller.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/state/cart_item_controller.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/cart/component/cart_item.dart';
+import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/invoice/invoice_checkout_screen.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/widget/center_loading.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/widget/price_with_action_button.dart';
 import 'package:flutter/material.dart';
@@ -63,8 +64,13 @@ class _CartScreenState extends State<CartScreen> {
           ),
           Obx(() {
             final price = Get.find<CartItemController>().totalCardItemPrice;
+            final itemLength = Get.find<CartItemController>().getItems.length;
             return PriceWithActionButton(
-              ontap: () {},
+              ontap: itemLength > 0
+                  ? () {
+                      Get.to(() => const InvoiceCheckOutScreen());
+                    }
+                  : null,
               actionText: 'Check out',
               price: price.obs.value.toString(),
             );

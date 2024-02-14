@@ -6,6 +6,7 @@ import 'package:crafty_bay_ruhulaminjr/presentation/state/cart_item_controller.d
 import 'package:crafty_bay_ruhulaminjr/presentation/state/category_item_controller.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/state/category_products_controller.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/state/complete_profile_controller.dart';
+import 'package:crafty_bay_ruhulaminjr/presentation/state/invoice_controller.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/state/new_product_controller.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/state/popular_product_controller.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/state/product_details_controller.dart';
@@ -33,5 +34,6 @@ class ControllerBinder extends Bindings {
     Get.put(ProductDetailsController());
     Get.put(AddToCartController());
     Get.put(CartItemController());
+    Get.put(InvoiceController());
   }
 }
