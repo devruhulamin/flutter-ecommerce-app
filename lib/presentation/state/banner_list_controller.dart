@@ -8,7 +8,7 @@ class BannerListController extends GetxController {
   String _errorMessage = '';
   bool get isLoading => _isloading;
   String get getErrorMessage => _errorMessage;
-  final List<BannerProduct> _bannerProduct = [];
+  List<BannerProduct> _bannerProduct = [];
   List<BannerProduct> get getBannerListProduct => _bannerProduct;
 
   Future<bool> getBannerList() async {
@@ -18,9 +18,11 @@ class BannerListController extends GetxController {
       final response =
           await NetworkCaller().getRequiest(url: ApiUrl.listProductSliderUrl);
       if (response.isSuccess) {
+        List<BannerProduct> pdlist = [];
         for (final pd in response.responseData['data']) {
-          _bannerProduct.add(BannerProduct.fromJson(pd));
+          pdlist.add(BannerProduct.fromJson(pd));
         }
+        _bannerProduct = pdlist;
         return true;
       } else {
         _errorMessage = response.errorMessage ?? 'An Error Occur';

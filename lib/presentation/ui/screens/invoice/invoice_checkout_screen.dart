@@ -1,5 +1,7 @@
 import 'package:crafty_bay_ruhulaminjr/data/model/invoice_model.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/state/invoice_controller.dart';
+import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/invoice/payment_web_view.dart';
+import 'package:crafty_bay_ruhulaminjr/presentation/ui/widget/bottom_navigation_bar_home.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/widget/center_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -61,6 +63,21 @@ class _InvoiceCheckOutScreenState extends State<InvoiceCheckOutScreen> {
                       itemBuilder: (context, index) {
                         final paymentMethod = invoiceData.paymentMethod![index];
                         return ListTile(
+                          onTap: () async {
+                            final result = await Get.to(() => PaymentWebView(
+                                  payUrl: paymentMethod.redirectGatewayURL ??
+                                      'https://www.youtube.com/',
+                                ));
+                            if (result) {
+                              Get.snackbar('Payment Success',
+                                  'Your payment is successfully completed',
+                                  duration: const Duration(seconds: 3));
+                            } else {
+                              Get.snackbar('Payment Failed',
+                                  'Your payment is not compeleted ',
+                                  duration: const Duration(seconds: 3));
+                            }
+                          },
                           leading: Image.network(paymentMethod.logo ?? ''),
                           title: Text(paymentMethod.name ?? ''),
                           trailing: const Icon(Icons.arrow_right),

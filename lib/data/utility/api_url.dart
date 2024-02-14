@@ -21,4 +21,7 @@ class ApiUrl {
   static String getCartItemUrl = '$baseUrl/CartList';
   static String deleteCartItem(String id) => '$baseUrl/DeleteCartList/$id';
   static const String createInvoice = '$baseUrl/InvoiceCreate';
+  static String createWishList(String id) => '$baseUrl/CreateWishList/$id';
+  static const getWishList = '$baseUrl/ProductWishList';
+  static String removeWishList(String id) => '$baseUrl/RemoveWishList/$id';
 }
