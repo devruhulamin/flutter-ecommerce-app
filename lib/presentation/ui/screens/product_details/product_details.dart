@@ -105,7 +105,9 @@ class _ProductDetailsState extends State<ProductDetails> {
                                     const SizedBox(width: 8),
                                     const PrimaryColorText(text: 'Reviews'),
                                     const SizedBox(width: 8),
-                                    const ProductFavoriteButton()
+                                    ProductFavoriteButton(
+                                      id: '${productData.productId}',
+                                    )
                                   ],
                                 ),
                                 const SizedBox(

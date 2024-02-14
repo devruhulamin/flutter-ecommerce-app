@@ -20,6 +20,7 @@ class ProductListScreen extends StatelessWidget {
         itemBuilder: (context, index) {
           return ProductCard(
             product: items[index],
+            isWishListed: false,
           );
         },
       ),

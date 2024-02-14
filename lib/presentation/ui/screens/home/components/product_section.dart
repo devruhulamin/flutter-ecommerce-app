@@ -13,6 +13,7 @@ class ProductsSection extends StatelessWidget {
         itemBuilder: (context, index) {
           return ProductCard(
             product: items[index],
+            isWishListed: false,
           );
         },
         separatorBuilder: (context, index) => const SizedBox(

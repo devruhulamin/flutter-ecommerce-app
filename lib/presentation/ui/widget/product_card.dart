@@ -1,4 +1,5 @@
 import 'package:crafty_bay_ruhulaminjr/data/model/popular_product_item.dart';
+import 'package:crafty_bay_ruhulaminjr/presentation/state/wish_list_controller.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/constants/assets_constant.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/product_details/product_details.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/products/component/product_fav_button.dart';
@@ -9,7 +10,9 @@ import 'package:get/get.dart';
 
 class ProductCard extends StatelessWidget {
   final ProductItem product;
-  const ProductCard({super.key, required this.product});
+  final bool isWishListed;
+  const ProductCard(
+      {super.key, required this.product, required this.isWishListed});
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +68,19 @@ class ProductCard extends StatelessWidget {
                         ProductRating(
                           rating: product.star,
                         ),
-                        const ProductFavoriteButton(),
+                        isWishListed
+                            ? IconButton(
+                                onPressed: () {
+                                  Get.find<WishListController>()
+                                      .removeWishList('${product.id}');
+                                },
+                                icon: const Icon(
+                                  Icons.remove_circle_outline,
+                                  color: Colors.red,
+                                  size: 24,
+                                ),
+                              )
+                            : ProductFavoriteButton(id: '${product.id}'),
                       ],
                     )
                   ],

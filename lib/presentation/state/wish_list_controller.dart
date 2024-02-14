@@ -63,6 +63,7 @@ class WishListController extends GetxController {
       final response =
           await NetworkCaller().getRequiest(url: ApiUrl.removeWishList(id));
       if (response.isSuccess) {
+        loadItems();
         return true;
       } else {
         return false;

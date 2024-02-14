@@ -51,6 +51,7 @@ class _WishListScreenState extends State<WishListScreen> {
                 itemBuilder: (context, index) {
                   return ProductCard(
                     product: items[index].product!,
+                    isWishListed: true,
                   );
                 },
               ),
