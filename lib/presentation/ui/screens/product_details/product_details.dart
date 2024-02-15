@@ -106,7 +106,9 @@ class _ProductDetailsState extends State<ProductDetails> {
                                     const SizedBox(width: 8),
                                     InkWell(
                                         onTap: () {
-                                          Get.to(() => const ReviewScreen());
+                                          Get.to(() => ReviewScreen(
+                                                id: '${productData.id}',
+                                              ));
                                         },
                                         child: const PrimaryColorText(
                                             text: 'Reviews')),

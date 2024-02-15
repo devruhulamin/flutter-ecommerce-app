@@ -1,19 +1,22 @@
+import 'package:crafty_bay_ruhulaminjr/data/model/review_model.dart';
 import 'package:flutter/material.dart';
 
 class ReviewItem extends StatelessWidget {
-  const ReviewItem({super.key});
+  final ReviewModel review;
+  const ReviewItem({super.key, required this.review});
 
   @override
   Widget build(BuildContext context) {
-    return const ListTile(
-      leading: Icon(Icons.person_2_outlined),
+    return ListTile(
+      leading: const Icon(Icons.person_2_outlined),
       title: Text(
-        "Ruhul Amin",
-        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+        "${review.profile?.cusName}",
+        style:
+            const TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
       ),
       subtitle: Text(
-        'very good product i recomment to every one to try this one its a great product to buy. i am really happy to try this one product.every one should try this product',
-        style: TextStyle(color: Colors.grey),
+        '${review.description}',
+        style: const TextStyle(color: Colors.grey),
       ),
     );
   }

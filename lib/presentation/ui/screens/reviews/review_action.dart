@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 
 class ReviewAction extends StatelessWidget {
   final String id;
-  const ReviewAction({super.key, required this.id});
+  final int reviewCount;
+  const ReviewAction({super.key, required this.id, required this.reviewCount});
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +19,10 @@ class ReviewAction extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Column(
+          Column(
             children: [
               PrimaryColorText(
-                text: 'Reviews(5)',
+                text: 'Reviews($reviewCount)',
                 size: 20,
               ),
             ],
