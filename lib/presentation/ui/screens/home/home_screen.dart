@@ -64,6 +64,25 @@ class HomeScreen extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               SectionTitle(
+                title: 'New',
+                onTap: () {
+                  Get.to(() => const NewProductScreen());
+                },
+              ),
+              const SizedBox(height: 8),
+              GetBuilder<NewProductsController>(builder: (controller) {
+                return SizedBox(
+                  height: 200,
+                  child: Visibility(
+                      visible: controller.isloading == false,
+                      replacement: const CenterLoading(),
+                      child: ProductsSection(
+                        items: controller.getProducts,
+                      )),
+                );
+              }),
+              const SizedBox(height: 8),
+              SectionTitle(
                 title: 'Popular',
                 onTap: () {
                   Get.to(() => const PopularProductScreen());
@@ -100,25 +119,6 @@ class HomeScreen extends StatelessWidget {
                       )),
                 );
               }),
-              const SizedBox(height: 8),
-              SectionTitle(
-                title: 'New',
-                onTap: () {
-                  Get.to(() => const NewProductScreen());
-                },
-              ),
-              const SizedBox(height: 8),
-              GetBuilder<NewProductsController>(builder: (controller) {
-                return SizedBox(
-                  height: 200,
-                  child: Visibility(
-                      visible: controller.isloading == false,
-                      replacement: const CenterLoading(),
-                      child: ProductsSection(
-                        items: controller.getProducts,
-                      )),
-                );
-              })
             ],
           ),
         ),

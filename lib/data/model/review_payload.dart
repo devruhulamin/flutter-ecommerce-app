@@ -1,7 +1,7 @@
 class ReviewPayload {
   String? description;
   int? productId;
-  int? rating;
+  double? rating;
 
   ReviewPayload({this.description, this.productId, this.rating});
 

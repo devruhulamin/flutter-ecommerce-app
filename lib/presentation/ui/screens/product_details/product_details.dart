@@ -29,7 +29,7 @@ class _ProductDetailsState extends State<ProductDetails> {
   @override
   void initState() {
     super.initState();
-    Get.find<ProductDetailsController>().loadProduct(1);
+    Get.find<ProductDetailsController>().loadProduct(widget.id);
   }
 
   String? color;

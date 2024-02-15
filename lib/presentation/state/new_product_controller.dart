@@ -16,7 +16,8 @@ class NewProductsController extends GetxController {
     _isloading = true;
     update();
     try {
-      final remarksUrl = ApiUrl.productByRemarks(RemarksType.popular.getName);
+      final remarksUrl =
+          ApiUrl.productByRemarks(RemarksType.newproduct.getName);
       final response = await NetworkCaller().getRequiest(url: remarksUrl);
       for (final data in response.responseData['data']) {
         _products.add(ProductItem().fromJson(data));
