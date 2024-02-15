@@ -1,6 +1,8 @@
+import 'package:crafty_bay_ruhulaminjr/presentation/ui/screens/reviews/add_review_screen.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/utilities/app_colors.dart';
 import 'package:crafty_bay_ruhulaminjr/presentation/ui/widget/primary_color_text.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ReviewAction extends StatelessWidget {
   final String id;
@@ -27,7 +29,11 @@ class ReviewAction extends StatelessWidget {
               ),
             ],
           ),
-          ElevatedButton(onPressed: () {}, child: const Icon(Icons.add))
+          ElevatedButton(
+              onPressed: () {
+                Get.to(() => AddReview(id: id));
+              },
+              child: const Icon(Icons.add))
         ],
       ),
     );
