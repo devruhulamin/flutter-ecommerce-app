@@ -24,4 +24,6 @@ class ApiUrl {
   static String createWishList(String id) => '$baseUrl/CreateWishList/$id';
   static const getWishList = '$baseUrl/ProductWishList';
   static String removeWishList(String id) => '$baseUrl/RemoveWishList/$id';
+  static String getReviewUrl(String id) => '$baseUrl/ListReviewByProduct/$id';
+  static const createReviewUrl = '$baseUrl/CreateProductReview';
 }
